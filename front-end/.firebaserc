@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "spaghettio": {
+      "hosting": {
+        "front-end": [
+          "spaghettio"
+        ]
+      }
+    }
+  }
+}
