@@ -22,7 +22,7 @@ Or just copy the given `.env` content and paste to the `.env` file
 
 Next, let's install nodemon to run the server
 ```sh
-$ npm install -g nodemon`
+$ npm install -g nodemon
 ```
 
 Next, we run the server using nodemon
