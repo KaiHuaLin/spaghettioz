@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  ingredientFormGroup: FormGroup;
+
+  constructor() { 
+    this.ingredientFormGroup = new FormGroup(
+      {
+        ingredient: new FormControl(""),
+      },
+      Validators.required
+    );
+  }
 
   ngOnInit(): void {
   }
