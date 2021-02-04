@@ -18,10 +18,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 
+
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { FavoriteComponent } from './pages/favorite/favorite.component';
     PageNotFoundComponent,
     LoginComponent,
     SearchComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    RecipePageComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { FavoriteComponent } from './pages/favorite/favorite.component';
     MatCardModule,
     MatTabsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
