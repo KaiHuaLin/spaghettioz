@@ -134,13 +134,19 @@ button{
 		transform: translateY(0);
 	}
 	30% {
-		transform: translateY(60px);
+		transform: translateY(1rem);
 	}
 }
+.arrow{
+    width:2%;
+    height:2%;
 
-#wheel {
+}
+ #wheel {
+
 	animation: scroll ease 2s infinite;
 }
+
 
 
    
