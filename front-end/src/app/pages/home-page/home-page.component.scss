@@ -121,9 +121,9 @@ button{
 
 .containerFooter{
     width:100%;
-    color:white;
-    margin: auto;
-    bottom:0;
+    margin:auto;
+    bottom: 3%;
+    position: absolute;
     color:black;
 }
 .display{
@@ -140,6 +140,8 @@ button{
 .arrow{
     width:2%;
     height:2%;
+    margin:auto;
+    filter: brightness(0) invert(1);
 
 }
  #wheel {
