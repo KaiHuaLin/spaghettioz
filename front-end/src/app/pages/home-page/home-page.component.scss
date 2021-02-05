@@ -12,6 +12,7 @@
 h1{
     font-size:3em;
     color:white;
+    margin:auto;
 }
 
 .image img{
@@ -66,7 +67,7 @@ body{
   .description2{
     width: 110%;
     margin:auto;
-    height:70%;
+    height:90%;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
     border-radius: 5px;
     position: relative;
@@ -74,22 +75,38 @@ body{
     background: inherit;
     overflow: hidden;
     margin:auto;
-    margin-right:3em;
-    margin-top:25%;
-  }
-  .description2:before{
-    content: "";
-    position: absolute;
-    background: inherit;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.603);
-    filter: blur(3px);
-    margin:auto;
+    margin-right:2em;
+    margin-top:20%;
 
-   }
+  }
+//   .description2:before{
+//     content: "";
+//     position: absolute;
+//     background: inherit;
+//     z-index: -1;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.603);
+//     filter: blur(3px);
+//     margin:auto;
+
+//    }
+#footer {
+    margin:auto;
+    bottom: 0%;
+    position: absolute;
+    
+}
+#feature{
+    width:100%;
+    margin:auto;
+}
+.title{
+    margin: auto;
+    width:100%;
+}
+
 
    
