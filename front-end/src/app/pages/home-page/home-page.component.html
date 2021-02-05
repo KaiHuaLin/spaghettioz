@@ -2,34 +2,42 @@
 <div class = "wrapper">
     <div fxLayout="wrap" class = "container">
         <div fxFlex = "row" class = "description">
-            
             <h1>Welcome</h1>
             <p>Recipe Generator is a website that allows your to find recipes you can make with the ingredients in your pantry.
                 Create an account today and get staretd and start saving money and time.
             </p>
-            <p id = "footer">Learn more</p>
-            <button mat-raised-button [routerLink] = "'/login'">Get started</button>
+            <button id = "loginButton" mat-raised-button [routerLink] = "'/login'">Get started</button>
         </div>
         
     </div>
     
 </div>
 
+<div fxLayout="wrap" class = "containerFooter">
+    <p id = "wheel">Scroll down</p>
+    <!-- <p id = "footer">Learn more</p> -->
+</div>
+
     <div class = "wrapper2">
     <div fxLayout="wrap" class = "container2">
-        
+
         <div fxFlex = "row" class = "description2">
             
             <h1>Input your Ingredients</h1>
-            <p>Welcome to Recipe Generator. Create an account to get started today!</p>
-        </div>
-        <div fxFlex = "row" class = "description2">
+            <img class = "display" alt = "browse" src = "../../../assets/undraw_next_tasks_iubr.svg">
+            <p>Input the ingredients you have on hand and you'll be served with all possible recipes in our database</p>
+    </div>
+        <div  fxFlex = "row" class = "description2">
             <h1>Save Recipes to your account</h1>
-            <p>Welcome to Recipe Generator. Create an account to get started today!</p>
+            <img class = "display" alt = "browse" src = "../../../assets/undraw_Wishlist_re_m7tv.svg">
+            <p>Find a recipe you love, and you can save it to your account to come back to later.</p>
         </div>
         <div fxFlex = "row" class = "description2">
             <h1>Browse through Hundred of Recipes</h1>
-            <p>Welcome to Recipe Generator. Create an account to get started today!</p>
+            <img class = "display" alt = "browse" src = "../../../assets/undraw_Web_search_re_efla.svg">
+            <p>In searching for recipes that can be made by the food in your pantry, you'll be able to 
+                look through over hundreds of different recipes
+            </p>
         </div>
     </div>
 </div>
