@@ -1,0 +1,88 @@
+.login-card {
+    width: 110%;
+    margin:auto;
+    height:70%;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+  }
+
+  .login-card:before{
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    margin: -20px;
+   }
+
+  .form-container {
+    padding-top: 1em;
+    padding-left:2em;
+    padding-right:2em;
+    height:100%;
+    margin:auto;
+  }
+
+  mat-tab-group{
+      margin:auto;
+  }
+
+  .container{
+    padding-top:25%;
+    margin:auto;  
+  }
+.page{
+    height:100%;
+    background-image: url("../../../assets/accent.png");
+    background-attachment: fixed; 
+    background-size: cover;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button{
+	width: 100%;
+	border-radius: 2em;
+	background-image: linear-gradient(to right, #6D597A, #6D597A, #6D597A);
+	font-size: 1.2rem;
+	color: #fff;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+
+  }
+
+input{
+    background:none;
+    border:none;
+    border-bottom:.2em solid white;
+    width:100%;
+    height:100%;
+}
+mat-icon{
+    color:white;
+}
+
+::ng-deep.mat-tab-label{
+    font-size: 25px !important;
+    color:white !important;
+  }
+  ::ng-deep.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: white !important;
+    height:.1em;
+  } 
+
+  
+  
+
+
