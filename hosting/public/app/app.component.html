@@ -1,0 +1,10 @@
+<mat-toolbar fxLayout="row" color="primary" class = "toolbar">
+  <span>Recipe Generator</span>
+  <div fxFlex fxLayoutAlign="flex-end">
+    <a mat-button class="navButton" fxHide.xs  [routerLink]="'/home'">Home </a>
+    <a mat-button class="navButton" fxHide.xs  [routerLink]="'/favorite'">Favorites</a>
+    <a mat-button class="navButton" fxHide.xs  [routerLink]="'/search'">Search</a>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
