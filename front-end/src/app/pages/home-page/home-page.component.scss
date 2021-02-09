@@ -5,6 +5,14 @@
     color:white;
 }
 
+.container2{
+    width:90%;
+    height:70%;
+    margin:auto;
+    border-radius: 1rem 1rem 1rem 1rem;
+    color:black;
+}
+
 
 // .description{
 //     text-align: center;
@@ -40,10 +48,7 @@ h1{
     -o-background-size: cover;
     background-size: cover;
 }
-body{
-    margin:0;
-    color:white;
-}
+
 
 .image, .description{
     margin-top:38%;
@@ -64,22 +69,12 @@ body{
     color:white;
   }
 
-//   .test1{
-//       height:20%;
-//       width:23.8%;
-//       z-index: 5;
-//       position: absolute;
-//       background-color: #5E6472;
-//       border-bottom-left-radius: 120px 40px;
-// border-bottom-right-radius: 120px 40px;
-//   }
-
   .description2{
     width: 10rem;
     margin:auto;
     height:30rem;
-    // box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
-    // border-radius: 5px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.438); 
+    border-radius: 5px;
     // position: relative;
     // z-index: 1;
     // background: inherit;
@@ -88,8 +83,37 @@ body{
     margin-left:5rem;
     margin-right:5rem;
     margin-top:7%;
-    background-color:white;
+    padding:0;
 
+
+
+
+  }
+  mat-card{
+      padding:0;
+  }
+  .header{
+      width:100%;
+      height:35%;
+      background-color: #5E6472;
+      border-bottom: .4rem solid #4e515a;
+      margin:0;
+      padding:0;
+      z-index: 10;
+  }
+  .card{
+      width:100%;
+      height:100%;
+  }
+  .card img{
+      margin-top:.5rem;
+      width:60%;
+  }
+  .card mat-card-title{
+      text-align: center;
+  }
+  .card mat-card-content{
+      font-size: 1rem;
   }
 //   .description2:before{
 //     content: "";
@@ -100,13 +124,13 @@ body{
 //     left: 0;
 //     right: 0;
 //     bottom: 0;
-//     box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.603);
+//     box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.733);
 //     filter: blur(3px);
 //     margin:auto;
 //    }
 
    .description2:hover{
-    outline: thick solid  white;
+    outline: thick solid  rgba(255, 255, 255, 0.637);
    }
 #footer {
     width:100%;
@@ -116,7 +140,6 @@ body{
     
 }
 #feature{
-    width:100%;
     margin:auto;
 }
 .title{
@@ -161,10 +184,10 @@ button{
 }
 
 #header{
-    width:100%;
+
     margin:auto;
     text-align: center;
-    font-size: 7rem;
+    font-size: 3rem;
     color:white;
     text-shadow: .01em .01em #5E6472;
 }
@@ -179,7 +202,7 @@ button{
     margin-left: 25%;
 }
 .description2 p{
-    color:white;
+    color:black;
     text-indent:1em;
     font-size: 1.2em;
 }
