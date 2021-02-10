@@ -10,6 +10,6 @@ module.exports = {
     ],
     rules: {
         quotes: ["error", "double"],
-        indent: ["error", 4],
+        indent: ["error", 4, {"MemberExpression": 1}],
     },
 };

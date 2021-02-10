@@ -1,17 +1,12 @@
-// const admin = require('firebase-admin');
-// const cors = require('cors');
-
-// admin.initializeApp();
-
-// const db = admin.firestore();
 const express = require("express");
 
 const router = new express.Router();
 
-
 const recipeRouter = require("./routes/recipe");
-router.use("/recipes", recipeRouter);
+const userRouter = require("./routes/user");
 
+router.use("/recipes", recipeRouter);
+router.use("/users", userRouter);
 
 
 router.route("/").get((req, res) => {
