@@ -1,4 +1,4 @@
-
+<!-- Welcome page -->
 <div class = "wrapper">
     <div fxLayout="wrap" class = "container">
         <div fxFlex = "row" class = "description">
@@ -8,71 +8,43 @@
             </p>
             <button id = "loginButton" mat-raised-button [routerLink] = "'/login'">Get started</button>
         </div>
-        
     </div>
-    
 </div>
-
+<!-- Arrow footer -->
 <div fxLayout="wrap" class = "containerFooter">
     <img id = "wheel"class = "arrow" alt = "arrow" src = "../../../assets/fast-forward.png">
-    <!-- <p id = "footer">Learn more</p> -->
 </div>
 
-    <div class = "wrapper2">
-        <p id = "header">Features</p>
+<!-- features details -->
+<div class = "wrapper2">
+    <p id = "header">See what Recipe Generator has to offer</p>
     <div fxLayout="wrap" class = "container2">
-       
-        
-        
         <div fxFlex = "row" class = "description2">
             <mat-card class = "card">
                 <div class = "header">
-                    <img src = "../../../assets/undraw_next_tasks_iubr.svg"mat-card-image alt = "recipe">
+                    <img id = "big"src = "../../../assets/undraw_next_tasks_iubr.svg"mat-card-image alt = "recipe">
+                    <mat-card-title>Input Ingredients</mat-card-title>
                 </div>
-                <mat-card-title>Input your Ingredients</mat-card-title>
-                
                 <mat-card-content>Input the ingredients you have on hand and you'll be served with all possible recipes in our database</mat-card-content>
             </mat-card>
         </div>
-            <div fxFlex = "row" class = "description2">
-                <mat-card class = "card">
-                    <div class = "header">
-                        <img class = "display" alt = "browse" src = "../../../assets/undraw_Wishlist_re_m7tv.svg">
-                    </div>
-                    <mat-card-title>Save Recipes to your account</mat-card-title>
-                    
-                    <mat-card-content>Find a recipe you love, and you can save it to your account to come back to later.</mat-card-content>
-                </mat-card>
-        </div>
-                <div fxFlex = "row" class = "description2">
-                    <mat-card class = "card">
-                        <div class = "header">
-                            <img class = "display" alt = "browse" src = "../../../assets/undraw_Web_search_re_efla.svg">
-                        </div>
-                        <mat-card-title>IBrowse through Hundred of Recipes</mat-card-title>
-                        
-                        <mat-card-content>In searching for recipes that can be made by the food in your pantry, you'll be able to 
-                            look through over hundreds of different recipes</mat-card-content>
-                    </mat-card>
-                    </div>
-            <!-- <div fxFlex = "row" class = "test1">
-                <h1>Input your Ingredients</h1>
-                <!-- <img class = "display" alt = "browse" src = "../../../assets/undraw_next_tasks_iubr.svg"> -->
-            <!-- <p>Input the ingredients you have on hand and you'll be served with all possible recipes in our database</p>
-            </div> --> 
-    
-    
-        <!-- <div  fxFlex = "row" class = "description2">
-            <h1>Save Recipes to your account</h1>
-            <img class = "display" alt = "browse" src = "../../../assets/undraw_Wishlist_re_m7tv.svg">
-            <p>Find a recipe you love, and you can save it to your account to come back to later.</p>
+        <div fxFlex = "row" class = "description2">
+            <mat-card class = "card">
+                <div class = "header">
+                    <img class = "display" alt = "browse" src = "../../../assets/undraw_Wishlist_re_m7tv.svg">
+                    <mat-card-title>Save Recipes</mat-card-title>
+                </div>
+                <mat-card-content>Find a recipe you love, and you can save it to your account to come back to later.</mat-card-content>
+            </mat-card>
         </div>
         <div fxFlex = "row" class = "description2">
-            <h1>Browse through Hundred of Recipes</h1>
-            <img class = "display" alt = "browse" src = "../../../assets/undraw_Web_search_re_efla.svg">
-            <p>In searching for recipes that can be made by the food in your pantry, you'll be able to 
-                look through over hundreds of different recipes
-            </p>
-        </div> -->
+            <mat-card class = "card">
+                <div class = "header">
+                    <img class = "display" alt = "browse" src = "../../../assets/undraw_Web_search_re_efla.svg">
+                    <mat-card-title >Browse Recipes</mat-card-title>
+                </div>
+                <mat-card-content>In searching for recipes that can be made by the food in your pantry, you'll be able to look through over hundreds of different recipes</mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

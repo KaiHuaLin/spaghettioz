@@ -12,22 +12,6 @@
     border-radius: 1rem 1rem 1rem 1rem;
     color:black;
 }
-
-
-// .description{
-//     text-align: center;
-// }
-h1{
-    font-size:3em;
-    color:white;
-    margin:auto;
-}
-
-.image img{
-    width:100%;
-    height:70%;
-}
-
 .wrapper{
     margin:auto;
     height:100%;
@@ -48,53 +32,27 @@ h1{
     -o-background-size: cover;
     background-size: cover;
 }
-
-
 .image, .description{
-    margin-top:38%;
+    margin-top:30%;
     margin-left:4em;
 }
-
-.alert{
-    text-align: center;
-    margin:auto;
-  }
-  .toolbar{
-    background-color: #CEABB1;
-    font-size:20px;
-    letter-spacing: 2px;
-    font-family: 'PT Serif', serif;
-    max-width: 100%;
-    height:8%;
-    color:white;
-  }
-
   .description2{
     width: 10rem;
     margin:auto;
-    height:30rem;
+    height:25rem;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.438); 
     border-radius: 5px;
-    // position: relative;
-    // z-index: 1;
-    // background: inherit;
-    // overflow: hidden;
-    margin:auto;
     margin-left:5rem;
     margin-right:5rem;
-    margin-top:7%;
+    margin-top:10%;
     padding:0;
-
-
-
-
   }
   mat-card{
       padding:0;
   }
   .header{
       width:100%;
-      height:35%;
+      height:50%;
       background-color: #5E6472;
       border-bottom: .4rem solid #4e515a;
       margin:0;
@@ -106,53 +64,34 @@ h1{
       height:100%;
   }
   .card img{
-      margin-top:.5rem;
       width:60%;
   }
   .card mat-card-title{
       text-align: center;
+      color:white;
   }
+  #big{
+      margin-top:1.2rem;
+  }
+
   .card mat-card-content{
       font-size: 1rem;
   }
-//   .description2:before{
-//     content: "";
-//     position: absolute;
-//     background: inherit;
-//     z-index: -1;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     bottom: 0;
-//     box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.733);
-//     filter: blur(3px);
-//     margin:auto;
-//    }
-
-   .description2:hover{
+  .card mat-card-title{
+      font-size: 2.6rem;
+  }
+.description2:hover{
     outline: thick solid  rgba(255, 255, 255, 0.637);
    }
-#footer {
-    width:100%;
-    margin:auto;
-    bottom: 0%;
-    position:fixed;
-    
-}
-#feature{
-    margin:auto;
-}
 .title{
     margin: auto;
     width:100%;
 }
-
 button{
     border: 0;
     color: #5E6472;
     width:75%;
 }
-
 .containerFooter{
     width:100%;
     margin:auto;
@@ -179,17 +118,15 @@ button{
 
 }
  #wheel {
-
 	animation: scroll ease 2s infinite;
 }
 
 #header{
-
     margin:auto;
     text-align: center;
+    padding-top:1rem;
     font-size: 3rem;
     color:white;
-    text-shadow: .01em .01em #5E6472;
 }
 
 .description2 h1{
