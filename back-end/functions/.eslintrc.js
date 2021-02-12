@@ -9,7 +9,11 @@ module.exports = {
         "google",
     ],
     rules: {
-        quotes: ["error", "double"],
-        indent: ["error", 4, {"MemberExpression": 1}],
+        "quotes": ["error", "double"],
+        "indent": ["error", 4, {"MemberExpression": 1}],
+        "max-len": ["error", {
+            "ignoreUrls": true,
+            "code": 120,
+        }],
     },
 };
