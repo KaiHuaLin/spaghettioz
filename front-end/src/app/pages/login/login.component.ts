@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
 
-  constructor() { 
+  constructor(private http: HttpClient) { 
     this.loginFormGroup = new FormGroup(
       {
         email: new FormControl(""),
@@ -31,6 +32,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+register(){
+   if(this.registerFormGroup.valid){
+    const headers = { 'content-type': 'application/json'} 
+    const body = JSON.stringify({ 'email': this.registerFormGroup.get("email").value,
+                    'password':  this.registerFormGroup.get("password").value,
+                    'displayName': this.registerFormGroup.get("name").value});
+    this.http.post("https://us-central1-spaghettio.cloudfunctions.net/api/users/", body, {'headers':headers}).subscribe(data =>
+    console.log(data));
+   }
+    
+  }
+
+  login(){
+
   }
 
 }
