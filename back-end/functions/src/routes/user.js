@@ -9,6 +9,7 @@ const router = new express.Router();
 
 // retreive user by requestType (uid, email, ...)
 router.route("/:reqType/:value").get((req, res) => {
+    // res.header("Access-Control-Allow-Origin", "*");
     const reqType = req.params.reqType;
     let promise = null;
 
