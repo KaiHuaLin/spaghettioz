@@ -3,13 +3,13 @@ const express = require("express");
 const admin = require("firebase-admin");
 
 admin.initializeApp();
-// const db = admin.firestore();
+
+const db = admin.firestore();
 const router = new express.Router();
 
 
 // retreive user by requestType (uid, email, ...)
 router.route("/:reqType/:value").get((req, res) => {
-    // res.header("Access-Control-Allow-Origin", "*");
     const reqType = req.params.reqType;
     let promise = null;
 
@@ -38,25 +38,46 @@ router.route("/").post((req, res) => {
     // {email: "<email>", password: "<pwd>", displayName: "<name>"}
     admin.auth().createUser(req.body)
         .then((user) => {
-            functions.logger.log("User created");
-            return res.status(201).send(user.uid);
+            functions.logger.log("Authentication: user created");
+
+            db.collection("users").doc(user.uid).set(req.body)
+                .then((status) => {
+                    functions.logger.log(`Firestore: user created at: ${status}`);
+                    return res.status(201).send(user);
+                })
+                .catch((error) => {
+                    functions.logger.log("Firestore: Error creating new user: ", error);
+                    return res.status(400).send(`Firestore: Error creating new user: ${error}`);
+                })
         })
         .catch((error) => {
-            functions.logger.log("Error creating new user: ", error);
-            return res.status(400).send(`Error creating new user: ${error}`);
+            functions.logger.log("Authentication: Error creating new user: ", error);
+            return res.status(400).send(`Authentication: Error creating new user: ${error}`);
         });
 });
 
 // update a user by uid
 router.route("/:uid").put((req, res) => {
-    admin.auth().updateUser(req.params.uid, req.body)
+    const user_id = req.params.uid;
+    const user_info = req.body;
+    admin.auth().updateUser(user_id, user_info)
         .then((user) => {
-            functions.logger.log("User updated");
-            return res.status(200).send(user);
+            functions.logger.log("Authentication: user updated");
+
+            // if it is a new field, then it will be appended to it
+            db.collection("users").doc(user_id).update(user_info)
+                .then((status) =>{
+                    functions.logger.log(`Firestore: user updated at: ${status}`);
+                    return res.status(201).send(user);
+                })
+                .catch((error) => {
+                    functions.logger.log("Firestore: Error updating user: ", error);
+                    return res.status(201).send(`Firestore: Error creating new user: ${error}`);
+                })
         })
         .catch((error) => {
-            functions.logger.log("Error updating new user: ", error);
-            return res.status(400).send(`Error updating new user: ${error}`);
+            functions.logger.log("Authentication: Error updating user: ", error);
+            return res.status(400).send(`Authentication: Error updating user: ${error}`);
         });
 });
 
