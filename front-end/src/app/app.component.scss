@@ -4,10 +4,11 @@
     padding: 1em;
 }
 
-
-
 .toolbar{
-    overflow: hidden;
+    position: sticky;
+    position: -webkit-sticky; /* For macOS/iOS Safari */
+    top: 0; /* Sets the sticky toolbar to be on top */
+    z-index: 1000; 
 }
 .mat-toolbar.mat-primary {
     background: #5E6472;
