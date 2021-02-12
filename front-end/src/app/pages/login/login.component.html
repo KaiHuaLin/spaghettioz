@@ -1,8 +1,12 @@
 <div class = "page"> 
-    <mat-card class="login-card" fxLayout="wrap">
+    <mat-card class="login-card" fxLayout="wrap">        
         <div fxLayout="column" class = "container">
-            <div fxLayout="row" fxLayoutAlign="right" >
-            <div fxLayout="row wrap" fxLayoutAlign="left">
+            <div fxLayout="row" fxLayoutAlign="right" class = "holder">
+                <div fxLayout="column" class="form-container" class = "welcome">
+                    <h1>Welcome!</h1>
+                    <img src = "../../assets/login.svg" alt ="user" id ="welcomeImg"><br>
+                </div>
+            <div fxLayout="row wrap" fxLayoutAlign="left" >
                 <mat-tab-group>
                     <mat-tab label="Login">
                         <ng-template matTabContent>

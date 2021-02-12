@@ -40,7 +40,7 @@ register(){
     const body = JSON.stringify({ 'email': this.registerFormGroup.get("email").value,
                     'password':  this.registerFormGroup.get("password").value,
                     'displayName': this.registerFormGroup.get("name").value});
-    this.http.post("https://us-central1-spaghettio.cloudfunctions.net/api/users/", body, {'headers':headers}).subscribe(data =>
+    this.http.post("https://us-central1-spaghettio.cloudfunctions.net/api/users/", body).subscribe(data =>
     console.log(data));
    }
     
