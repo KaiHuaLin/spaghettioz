@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 
+import { HttpClientModule } from '@angular/common/http';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -54,7 +55,8 @@ import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
     MatInputModule,
     MatListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

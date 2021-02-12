@@ -1,67 +1,71 @@
 <div class = "page"> 
-<mat-card class="login-card" fxLayout="wrap">
-    <div fxLayout="column" class = "container">
-        <div fxLayout="row" fxLayoutAlign="right" >
-        <div fxLayout="row wrap" fxLayoutAlign="left">
-            <mat-tab-group>
-                <mat-tab label="Login">
-                    <ng-template matTabContent>
-                        <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
-                            <div fxLayout="column" class="form-container">
-                                <mat-form-field>
-                                    <mat-placeholder>
-                                        <mat-icon class="white-icon">email</mat-icon>
-                                    </mat-placeholder>
-                                    <input matInput required formControlName="email"
-                                        type="email" />
-                                </mat-form-field><br>
-                                <mat-form-field>
-                                    <mat-placeholder>
-                                        <mat-icon class="white-icon">lock</mat-icon>
-                                    </mat-placeholder>
-                                    <input matInput required formControlName="password"
-                                        type="password" />
-                                </mat-form-field>
-                                <button mat-raised-button [disabled]="loginFormGroup.invalid">Login</button>
-                            </div>
-                        </form>
-                    </ng-template>
-                </mat-tab>
-                <mat-tab label="Register">
-                    <ng-template matTabContent>
-                        <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
-                            <div fxLayout="column" class="form-container">
-                                <mat-form-field>
-                                    <mat-placeholder>
-                                        <mat-icon>person</mat-icon>
-                             
-                                    </mat-placeholder>
-                                    <input matInput required formControlName="name" />
-                                </mat-form-field><br>
-                                <mat-form-field>
-                                    <mat-placeholder>
-                                        <mat-icon>email</mat-icon>
-                             
-                                    </mat-placeholder>
-                                    <input matInput required  formControlName="email"
-                                        type="email" />
-                                </mat-form-field><br>
-                                <mat-form-field>
-                                    <mat-placeholder>
-                                        <mat-icon>lock</mat-icon>
-                       
-                                    </mat-placeholder>
-                                    <input matInput required formControlName="password"
-                                        type="password" />
-                                </mat-form-field>
-                                <button mat-raised-button [disabled]="registerFormGroup.invalid">Register</button>
-                            </div>
-                        </form>
-                    </ng-template>
-                </mat-tab>
-            </mat-tab-group>
+    <mat-card class="login-card" fxLayout="wrap">        
+        <div fxLayout="column" class = "container">
+            <div fxLayout="row" fxLayoutAlign="right" class = "holder">
+                <div fxLayout="column" class="form-container" class = "welcome">
+                    <h1>Welcome!</h1>
+                    <img src = "../../assets/login.svg" alt ="user" id ="welcomeImg"><br>
+                </div>
+            <div fxLayout="row wrap" fxLayoutAlign="left" >
+                <mat-tab-group>
+                    <mat-tab label="Login">
+                        <ng-template matTabContent>
+                            <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+                                <div fxLayout="column" class="form-container">
+                                    <mat-form-field>
+                                        <mat-placeholder>
+                                            <mat-icon class="white-icon">email</mat-icon>
+                                        </mat-placeholder>
+                                        <input matInput required formControlName="email"
+                                            type="email" />
+                                    </mat-form-field><br>
+                                    <mat-form-field>
+                                        <mat-placeholder>
+                                            <mat-icon class="white-icon">lock</mat-icon>
+                                        </mat-placeholder>
+                                        <input matInput required formControlName="password"
+                                            type="password" />
+                                    </mat-form-field>
+                                    <button mat-raised-button [disabled]="loginFormGroup.invalid">Login</button>
+                                </div>
+                            </form>
+                        </ng-template>
+                    </mat-tab>
+                    <mat-tab label="Register">
+                        <ng-template matTabContent>
+                            <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
+                                <div fxLayout="column" class="form-container">
+                                    <mat-form-field>
+                                        <mat-placeholder>
+                                            <mat-icon>person</mat-icon>
+                                
+                                        </mat-placeholder>
+                                        <input matInput required formControlName="name" />
+                                    </mat-form-field><br>
+                                    <mat-form-field>
+                                        <mat-placeholder>
+                                            <mat-icon>email</mat-icon>
+                                
+                                        </mat-placeholder>
+                                        <input matInput required  formControlName="email"
+                                            type="email" />
+                                    </mat-form-field><br>
+                                    <mat-form-field>
+                                        <mat-placeholder>
+                                            <mat-icon>lock</mat-icon>
+                        
+                                        </mat-placeholder>
+                                        <input matInput required formControlName="password"
+                                            type="password" />
+                                    </mat-form-field>
+                                    <button mat-raised-button [disabled]="registerFormGroup.invalid">Register</button>
+                                </div>
+                            </form>
+                        </ng-template>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
         </div>
-    </div>
-    </div>
-</mat-card>
+        </div>
+    </mat-card>
 </div>
