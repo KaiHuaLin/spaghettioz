@@ -27,3 +27,19 @@
     * Ex: /api/users/YfivdoR07GPJ5Pjv
     * json object: {email: "testUpdate@test.com", password: "123456eref",displayName: "testUser"}
     * **Note: json object can include: uid, email, emailVerified, phoneNumber, password,** **displayName, photoURL, disabled**
+
+
+
+### Recipe API
+
+1. Get recipe by ID:
+    * GET Request
+    * <Host url>/api/recipes/<id>
+    * Ex: api/recipes/76985
+
+2. Get recipes by query:
+    * GET Request
+    * <Host url>/api/recipes?<query parametor>
+    * EX: api/recipes?includeIngredients=tomato.cheese&number=10
+    * Please reference this page to see all the parametors: 
+    * https://spoonacular.com/food-api/docs#Search-Recipes-Complex
