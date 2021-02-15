@@ -42,6 +42,36 @@ router.route("/:reqType/:value").get((req, res) => {
         });
 });
 
+// login a user
+router.route("/login").post((req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    admin.auth().getUserByEmail(email)
+        .then((authUser) => {
+            functions.logger.log("Authentication: Got user email successfully");
+
+            db.doc(authUser.uid).get()
+                .then((user) => {
+                    if (user.data().password === password) {
+                        functions.logger.log("Firestore: Got user match email and password successfully");
+                        return res.status(200).send(`${authUser.uid} logged in`);
+                    } else {
+                        functions.logger.log("Firestore: Error logged in failed, wrong password");
+                        return res.status(401).send("Firestore: Logged in failed, wrong password");
+                    }
+                })
+                .catch((error) => {
+                    functions.logger.log("Firestore: Error logged in failed: ", error);
+                    return res.status(401).send(`Firestore: Error logged in failed: ${error}`);
+                });
+        })
+        .catch((error) => {
+            functions.logger.log("Firestore: Error logged in fail, no such user", error);
+            return res.status(401).send(`Firestore: Error logged in fail, no such user: ${error}`);
+        });
+});
+
 // creat a new user
 router.route("/").post((req, res) => {
     // req.body will look like this

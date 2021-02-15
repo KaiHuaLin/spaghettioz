@@ -12,8 +12,15 @@
     * Ex: api/users/email/test@test.com
     * **Note: request type can be: uid, email**
 
+2. Login user:
+    * POST Request
+    * `Host url`/api/users/login
+    * Ex: api/users/login
+    * json object: {email: "test@test.com", password: "qwe123"}
+    
 
-2. Create user:
+
+3. Create user:
      * POST request
      * `Host url`/api/users/ with json object
      * Ex: /api/users/ 
@@ -21,7 +28,7 @@
      * **Note: json object can include: uid, email, emailVerified, phoneNumber, password,** **displayName, photoURL, disabled**
 
 
-3. Update user:
+4. Update user:
     * PUT request
     * `Host url`/api/users/uid with json object
     * Ex: /api/users/YfivdoR07GPJ5Pjv
