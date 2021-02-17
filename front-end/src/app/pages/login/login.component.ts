@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   registerFormGroup: FormGroup;
 
-  constructor(private http: HttpClient) { 
+  constructor(private AuthService: AuthService) { 
     this.loginFormGroup = new FormGroup(
       {
         email: new FormControl(""),
@@ -34,19 +35,36 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-register(){
-   if(this.registerFormGroup.valid){
-    const body = { email: this.registerFormGroup.get("email").value,
-                    password:  this.registerFormGroup.get("password").value,
-                    displayName: this.registerFormGroup.get("name").value};
-    console.log(body);
-    this.http.post("https://us-central1-spaghettio.cloudfunctions.net/api/users/", body);
-   }
-    
+  async register() {
+    if (this.registerFormGroup.valid) {
+      const credential = {
+        email: this.registerFormGroup.get("email").value,
+        password: this.registerFormGroup.get("password").value,
+        displayName: this.registerFormGroup.get("name").value,
+      }
+
+      try {
+        const user = await this.AuthService.create_user(credential);
+
+        // update displayName
+        // this.AuthService.update_user(user, { displayName: credential.displayName })
+        console.log(user);
+      }
+      catch (error) {
+        console.log("Error: " + error);
+      }
+    }
   }
 
-  login(){
-
+  async login() {
+    const email = "eric@test.com";
+    const password = "test1234";
+    const userCredential = await this.AuthService.signIn(email, password)
+    const user = userCredential.user;
+    console.log(user);
   }
 
+  logout() {
+    this.AuthService.signOut();
+  }
 }
