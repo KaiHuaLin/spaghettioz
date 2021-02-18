@@ -20,7 +20,6 @@ export class DbService {
       uid: uid,
       email: email,
       password: password,
-      displayName: "",
     };
     this.usersCollection.doc(uid).set(user);
     console.log("Firestore: User created");

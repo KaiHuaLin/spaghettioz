@@ -12,11 +12,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth, private Db: DbService) { }
 
   // create user
-  async create_user(credential) {
-    const email = credential.email;
-    const password = credential.password;
-    const displayName = credential.displayName;
-
+  async create_user(email: string, password: string, displayName: string) {
     const user = (await this.auth.createUserWithEmailAndPassword(email, password)).user;
     console.log("Authentication: User created");
 
@@ -34,11 +30,23 @@ export class AuthService {
     this.Db.update_user(user.uid, updateInfo);
   }
 
-  // sign in
-  signIn(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password)
+  // check if user is logged in
+  checkSignInStatus() {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user.email + "logged in")
+      } else {
+        console.log("no login")
+      }
+    });
   }
 
+  // sign in
+  signIn(email: string, password: string) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  // sign out
   signOut() {
     return this.auth.signOut();
   }

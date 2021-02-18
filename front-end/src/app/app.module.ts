@@ -32,8 +32,9 @@ import { SearchComponent } from './pages/search/search.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 
-import {AuthService} from './service/auth/auth.service';
-import {DbService} from './service/db/db.service';
+import { AuthService } from './service/auth/auth.service';
+import { DbService } from './service/db/db.service';
+import { RecipeService } from './service/recipe/recipe.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import {DbService} from './service/db/db.service';
     MatExpansionModule
 
   ],
-  providers: [AuthService, DbService],
+  providers: [AuthService, DbService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
