@@ -1,5 +1,133 @@
-<!-- Welcome page -->
-<div class = "wrapper">
+<!-- home page -->
+<main>
+  <div class="position-relative">
+    <section class="section section-lg section-shaped pb-200">
+      <div class="shape shape-style-1 shape-default">
+        <img class = "image" src = "../../assets/img/accent7.png" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="container py-lg-md d-flex">
+        <div class="col px-1">
+          <div class="row">
+            <div class="col-lg-7">
+              <h1 class="display-2  text-white">Recipe Generator
+                <span>Get started today</span>
+              </h1>
+              <p class="lead  text-white">Start finding recipes that you can make with ingredients you already have on hand.</p>
+              <div class="btn-wrapper">
+                <a [routerLink]="['/login']"class="btn btn-white btn-icon mb-3 mb-sm-1">
+                  <span class="btn-inner--text btn-block">Login</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </section>
+    </div>
+    <section class="section section-lg pt-lg-0 mt--200">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="row row-grid">
+              <div class="col-lg-4">
+                <div class="card card-lift--hover shadow border-0">
+                  <div class="card-body py-5">
+                    <img class = "image-card" src = "../../../assets/img/undraw_next_tasks_iubr.svg"mat-card-image alt = "recipe">
+                    <h6 class="text-default text-uppercase">Input Ingredients</h6>
+                    <p class="description mt-3">Input the ingredients you have on hand and you'll be served with all possible recipes in our database.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card card-lift--hover shadow border-0">
+                  <div class="card-body py-5">
+                    <img class = "image-card-2" alt = "browse" src = "../../../assets/img/undraw_Wishlist_re_m7tv.svg">
+                    <h6 class="text-default text-uppercase">Save Recipes</h6>
+                    <p class="description mt-34">Find a recipe you love, and you can save it to your account so that you can come back to it later.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card card-lift--hover shadow border-0">
+                  <div class="card-body py-5">
+                    <img class = "image-card-3" alt = "browse" src = "../../../assets/img/undraw_Web_search_re_efla.svg">
+                    <h6 class="text-default text-uppercase">Browse Recipes</h6>
+                    <p class="description mt-3">In searching for recipes that can be made by the food in your pantry, you'll be able to look through over hundreds of different recipes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-lg">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6 order-md-2">
+            <img src="../../../assets/img/undraw_breakfast_psiw.svg" class="img-fluid floating">
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="pr-md-5">
+              <h3>What we have to offer</h3>
+              <ul class="list-unstyled mt-5">
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <div class="badge badge-circle badge-default mr-3">
+                        <i class="ni ni-settings-gear-65"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <h6 class="mb-0">Over 5,000 different recipes</h6>
+                    </div>
+                  </div>
+                </li>
+                <li class="py-2">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <div class="badge badge-circle badge-default mr-3">
+                        <i class="ni ni-html5"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <h6 class="mb-0">Countless ingredient matches</h6>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- footer -->
+    <div class="container">
+      <hr>
+      <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+          <a>Spaghettio Group 2021</a>
+        </div>
+      </div>
+    </div>
+</main>
+
+
+<!-- old html -->
+<!-- <div class = "wrapper">
     <div fxLayout="wrap" class = "container">
         <div fxFlex = "row" class = "description">
             <h1>Welcome</h1>
@@ -9,7 +137,7 @@
             <button id = "loginButton" mat-raised-button [routerLink] = "'/login'">Get started</button>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Arrow footer -->
 <!-- <div fxLayout="wrap" class = "containerFooter">
     <img id = "wheel"class = "arrow" alt = "arrow" src = "../../../assets/fast-forward.png">
