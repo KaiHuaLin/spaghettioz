@@ -31,6 +31,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
     LoginComponent,
     SearchComponent,
     FavoriteComponent,
-    RecipePageComponent
+    RecipePageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
