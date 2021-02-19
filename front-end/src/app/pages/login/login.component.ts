@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   user: any;
 
-  constructor(private AuthService: AuthService) { 
+  constructor(private AuthService: AuthService, public router: Router) { 
     this.loginFormGroup = new FormGroup(
       {
         email: new FormControl(""),
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     const userCredential = await this.AuthService.signIn(email, password)
     const user = userCredential.user;
     console.log(user);
+    this.router.navigate(['search']);
   }
  
   //  login(){

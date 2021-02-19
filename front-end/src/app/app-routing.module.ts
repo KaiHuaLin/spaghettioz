@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -24,14 +25,17 @@ const routes: Routes = [
   {
     path: 'favorite',
     component: FavoriteComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'search',
     component: SearchComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'recipe',
     component: RecipePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',

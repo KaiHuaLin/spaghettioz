@@ -11,6 +11,8 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth, private Db: DbService) { }
 
+  user : any;
+
   // create user
   async create_user(email: string, password: string, displayName: string) {
     const user = (await this.auth.createUserWithEmailAndPassword(email, password)).user;
@@ -31,14 +33,17 @@ export class AuthService {
   }
 
   // check if user is logged in
-  checkSignInStatus() {
+   get checkSignInStatus() : boolean {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.email + "logged in")
+        console.log(user.email + "logged in");
+        this.user = user;
       } else {
-        console.log("no login")
+        console.log("no login");
+        this.user = user;
       }
     });
+    return (this.user !== null) ? true : false;
   }
 
   // sign in
