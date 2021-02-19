@@ -1,35 +1,95 @@
-<div class = "wrapper" fxLayoutAlign="center">
-    <div fxLayout="wrap" class = "container">
-        <div fxFlex = "row" class = "description">
-            <h1>Input your ingredients</h1><br>
-            <form [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient()">
-                <!-- (ngSubmit)="addIngredient()" -->
-                    
-                    <input matInput formControlName="ingredient"><br>
-                    <button mat-raised-button [disabled]="ingredientFormGroup.invalid">Add Ingredient</button>
+<section class="section-profile-cover section-shaped my-0">
+    <h1 class="display-1 text-center text-white" >Search Recipes</h1>
+    <div class="shape shape-style-1 shape-primary alpha-4">
+        <img class = "image" src = "../../assets/img/basic.png" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+  </div>
+  <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+  </div>
+</section>
+<div class="container">
+    <div class="card shadow text-center mt--300">
+        <div class="row">
+            <div class="col-lg-3 text-center">
+                <h3>Input ingredients</h3>
+                <form [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
+                    <input class="form-control" formControlName="ingredient">
+                    <div class="text-center">
+                        <button class = "w-100 btn btn-default my-4" [disabled]="ingredientFormGroup.invalid">Add</button>
+                    </div>
                 </form>
-            <mat-list>
-                <mat-list-item> Pepper </mat-list-item>
-                <mat-list-item> Salt </mat-list-item>
-                <mat-list-item> Paprika </mat-list-item>
-            </mat-list>
-        </div>
-        <div fxFlex = "row" class = "description" >
-            <h1>Available Recipes</h1><br>
-            <div fxLayout="wrap">
-                <mat-card>
-                    <mat-card-title>Recipe Name</mat-card-title>
-                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                    <mat-card-content>Description of recipe</mat-card-content>
-                </mat-card>
-                <mat-card>
-                    <mat-card-title>Recipe Name</mat-card-title>
-                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                    <mat-card-content>Description of recipe</mat-card-content>
-                </mat-card>
+                <mat-list class="text-center" *ngFor="let ingredient of ingredients">
+                    <mat-list-item> {{ingredient.ingredient}} </mat-list-item>
+                </mat-list>
+            </div>
+    
+    
+            <div class="col-lg-9">
+                    <h2>Results</h2><br>
+                    <mat-paginator [length]="100"
+                        [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
+                <div  class = "holder">
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                </div>
+                <div  class = "holder">
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                        <mat-card-title>Recipe Name</mat-card-title>
+                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                        <mat-card-content>Description of recipe</mat-card-content>
+                    </mat-card>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div class="container">
+    <hr>
+    <div class="row align-items-center justify-content-md-between">
+      <div class="col-md-6">
+        <a>Spaghettio Group 2021</a>
+      </div>
     </div>
 </div>

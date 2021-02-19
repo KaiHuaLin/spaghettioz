@@ -11,6 +11,7 @@ import { Query } from '../../models/Query'
 export class SearchComponent implements OnInit {
 
   ingredientFormGroup: FormGroup;
+  ingredients = [];
 
   constructor(private recipe: RecipeService) { 
     this.ingredientFormGroup = new FormGroup(
@@ -19,13 +20,18 @@ export class SearchComponent implements OnInit {
       },
       Validators.required
     );
+    
   }
 
   ngOnInit(): void {
   }
 
-  async addIngredient() {
-    
+  //adds ingredient
+  addIngredient(ingredient){
+    this.ingredients.push(ingredient);
+    this.ingredientFormGroup.reset();
+    console.log(ingredient);
+    console.log(this.ingredients);
   }
 
   // examples
