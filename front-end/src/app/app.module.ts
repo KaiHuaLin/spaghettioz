@@ -33,6 +33,10 @@ import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 
+import { AuthService } from './service/auth/auth.service';
+import { DbService } from './service/db/db.service';
+import { RecipeService } from './service/recipe/recipe.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +69,7 @@ import { RegisterComponent } from './pages/register/register.component';
     MatExpansionModule
 
   ],
-  providers: [],
+  providers: [AuthService, DbService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
