@@ -4,6 +4,7 @@ import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
+  },
+  {
+    path: 'recipe',
+    component: RecipePageComponent,
   },
   {
     path: '',
