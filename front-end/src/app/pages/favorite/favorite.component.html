@@ -84,6 +84,7 @@
 <main class="profile-page">
     <section class="section-profile-cover section-shaped my-0">
       <!-- Circles background -->
+      <h1 class="display-1 text-center text-white" >Favorite Recipes</h1>
       <div class="shape shape-style-1 shape-primary alpha-4">
         <img class = "image" src = "../../assets/img/basic.png" >
         <span></span>
@@ -109,14 +110,49 @@
               <div class="col-lg-4 order-lg-1">
                 <div class="card-profile-stats d-flex justify-content-center">
                   <div>
-                    <span class="heading">3</span>
+                    <span class="heading">4</span>
                     <span class="description">Favorites</span>
                   </div>
                   
                 </div>
               </div>
             </div>
-            <div class="text-center mt-5">
+            <div  class = "holder">
+                <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                    <mat-card-title>Recipe Name</mat-card-title>
+                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                    <mat-card-content>Description of recipe</mat-card-content>
+                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
+                </mat-card>
+                <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                    <mat-card-title>Recipe Name</mat-card-title>
+                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                    <mat-card-content>Description of recipe</mat-card-content>
+                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
+                </mat-card>
+            </div>
+            <div  class = "holder">
+                <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                    <mat-card-title>Recipe Name</mat-card-title>
+                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                    <mat-card-content>Description of recipe</mat-card-content>
+                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
+                </mat-card>
+                <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                    <mat-card-title>Recipe Name</mat-card-title>
+                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
+                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
+                    <mat-card-content>Description of recipe</mat-card-content>
+                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
+                </mat-card>
+            </div>
+            
+            
+            
+            <!-- <div class="text-center mt-5">
               <h3>Jessica Jones
                 <span class="font-weight-light">, 27</span>
               </h3>
@@ -131,10 +167,20 @@
                   <a href="javascript:void(0)">Show more</a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
+          
         </div>
-      </div>
+        </div>
+        
     </section>
+    <div class="container">
+        <hr>
+        <div class="row align-items-center justify-content-md-between">
+            <div class="col-md-6">
+                <a>Spaghettio Group 2021</a>
+            </div>
+        </div>
+    </div>
   </main>
   
