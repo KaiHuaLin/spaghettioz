@@ -2,7 +2,7 @@
     <div fxLayout="wrap" class = "container">
         <div fxFlex = "row" class = "description">
             <h1>Input your ingredients</h1><br>
-            <form [formGroup]="ingredientFormGroup">
+            <form [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient()">
                 <!-- (ngSubmit)="addIngredient()" -->
                     
                     <input matInput formControlName="ingredient"><br>

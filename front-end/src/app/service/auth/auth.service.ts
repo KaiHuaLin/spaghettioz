@@ -42,8 +42,9 @@ export class AuthService {
   }
 
   // sign in
-  signIn(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+  async signIn(email: string, password: string) {
+    const userCredential: any = await this.auth.signInWithEmailAndPassword(email, password);
+    return userCredential.user;
   }
 
   // sign out
