@@ -33,11 +33,11 @@ export class AuthService {
   }
 
   // check if user is logged in
-  get checkSignInStatus() : boolean{
+  get checkSignInStatus() : boolean {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.email + "logged in")
-        return true;
+        console.log(user.email + " logged in");
+        this.user = user;
       } else {
         console.log("no login");
         return false;
@@ -48,8 +48,9 @@ export class AuthService {
   }
 
   // sign in
-  signIn(email: string, password: string) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+  async signIn(email: string, password: string) {
+    const userCredential: any = await this.auth.signInWithEmailAndPassword(email, password);
+    return userCredential.user;
   }
 
   // sign out
