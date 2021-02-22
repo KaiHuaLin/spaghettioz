@@ -28,14 +28,21 @@ export class LoginComponent implements OnInit {
   
 
   async login() {
-    const email = this.loginFormGroup.get("email").value;
-    const password = this.loginFormGroup.get("password").value;
-    
-    const user = await this.AuthService.signIn(email, password)
-    console.log(user);
-    //added local storage for the auth guard 
-    localStorage.setItem('user', JSON.stringify(user));
-    this.router.navigate(['search']);
+    if (this.loginFormGroup.valid) {
+      const email = this.loginFormGroup.get("email").value;
+      const password = this.loginFormGroup.get("password").value;
+      
+      try {
+        const user = await this.AuthService.signIn(email, password)
+        console.log(user);
+        //added local storage for the auth guard 
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['search']);
+      }
+      catch (error) {
+        console.log("Error: " + error);
+      }
+    }
   }
 
   logout() {

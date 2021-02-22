@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   registerFormGroup: FormGroup;
   
-  constructor(private AuthService: AuthService) { 
+  constructor(private AuthService: AuthService, public router: Router) { 
     this.registerFormGroup = new FormGroup(
       {
         name: new FormControl(""),
@@ -37,6 +37,10 @@ export class RegisterComponent implements OnInit {
         console.log(user);
 
         // user will be logged in once the user is created
+
+        //added local storage for the auth guard 
+        localStorage.setItem('user', JSON.stringify(user));
+        this.router.navigate(['search']);
       }
       catch (error) {
         console.log("Error: " + error);
