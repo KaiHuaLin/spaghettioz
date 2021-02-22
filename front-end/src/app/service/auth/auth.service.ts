@@ -33,18 +33,15 @@ export class AuthService {
   }
 
   // check if user is logged in
-  get checkSignInStatus() : boolean {
+  checkSignInStatus() {
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email + " logged in");
-        this.user = user;
       } else {
         console.log("no login");
         return false;
       }
     });
-    console.log(this.user);
-    return (this.user !== null) ? true : false;
   }
 
   // sign in
