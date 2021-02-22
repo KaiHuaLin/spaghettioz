@@ -31,29 +31,12 @@ export class LoginComponent implements OnInit {
     const email = this.loginFormGroup.get("email").value;
     const password = this.loginFormGroup.get("password").value;
     
-    const userCredential = await this.AuthService.signIn(email, password)
-    const user = userCredential.user;
+    const user = await this.AuthService.signIn(email, password)
     console.log(user);
     //added local storage for the auth guard 
     localStorage.setItem('user', JSON.stringify(user));
     this.router.navigate(['search']);
   }
- 
-  //  login(){
-  //    if(this.loginFormGroup.valid){
-  //      const body = { email: this.loginFormGroup.get("email").value,
-  //                    password:  this.loginFormGroup.get("password").value};
-  //    console.log(body);
-  //    this.http.post("https://us-central1-spaghettio.cloudfunctions.net/api/users/login/", body, {responseType: 'text' }).subscribe(data =>  {
-  //      if(data){
-  //        this.user = data;
-  //        console.log(this.user);
-  //      } 
-  //      //this.router.navigate(['favorites'])
-  //    });
-     
-  //    }
-  //   }
 
   logout() {
     this.AuthService.signOut();
