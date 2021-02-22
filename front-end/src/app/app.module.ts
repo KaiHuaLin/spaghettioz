@@ -36,6 +36,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './service/auth/auth.service';
 import { DbService } from './service/db/db.service';
 import { RecipeService } from './service/recipe/recipe.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { RecipeService } from './service/recipe/recipe.service';
     MatExpansionModule
 
   ],
-  providers: [AuthService, DbService, RecipeService],
+  providers: [AuthService, DbService, RecipeService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

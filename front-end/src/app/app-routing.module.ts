@@ -15,17 +15,17 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
+    path: 'favorite',
+    component: FavoriteComponent,
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'login',
     component: LoginComponent,
   },
   {
     path: 'register',
     component: RegisterComponent,
-  },
-  {
-    path: 'favorite',
-    component: FavoriteComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'search',

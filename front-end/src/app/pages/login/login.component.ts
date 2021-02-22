@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     
     const user = await this.AuthService.signIn(email, password)
     console.log(user);
+    //added local storage for the auth guard 
+    localStorage.setItem('user', JSON.stringify(user));
     this.router.navigate(['search']);
   }
 
