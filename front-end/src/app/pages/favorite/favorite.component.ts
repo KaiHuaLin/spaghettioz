@@ -13,9 +13,6 @@ export class FavoriteComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    if(this.auth.checkSignInStatus === true){
-      this.router.navigate(['home']);
-    }
   }
 
 }
