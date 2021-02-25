@@ -9,10 +9,15 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 })
 export class FavoriteComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private AuthService: AuthService, private router: Router) {
    }
 
   ngOnInit(): void {
   }
 
+  async getFavorite() {
+    // get current user
+    const user = await this.AuthService.checkSignInStatus();
+    console.log(user);
+  }
 }

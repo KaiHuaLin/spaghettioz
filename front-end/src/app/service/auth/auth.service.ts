@@ -32,15 +32,13 @@ export class AuthService {
     this.Db.update_user(user.uid, updateInfo);
   }
 
-  // check if user is logged in
-  checkSignInStatus() {
-    this.auth.onAuthStateChanged((user) => {
-      if (user) {
+  // get current logged in user
+  checkSignInStatus(): Promise<firebase.User> {
+    return new Promise((resolve, reject) => {
+      this.auth.onAuthStateChanged(user => {
         console.log(user.email + " logged in");
-      } else {
-        console.log("no login");
-        return false;
-      }
+        resolve(user);
+      }, reject)
     });
   }
 
