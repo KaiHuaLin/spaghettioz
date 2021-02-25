@@ -23,6 +23,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSidenavModule} from '@angular/material/sidenav';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -67,8 +69,9 @@ import { AuthGuard } from './guards/auth.guard';
     ReactiveFormsModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatExpansionModule
-
+    MatExpansionModule,
+    MatMenuModule,
+    MatSidenavModule
   ],
   providers: [AuthService, DbService, RecipeService, AuthGuard],
   bootstrap: [AppComponent]

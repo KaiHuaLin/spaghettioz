@@ -1,7 +1,7 @@
 .navButton{
     text-decoration: none;
     color: #AED9E0;
-    padding: 1em;
+    align-self: right;
 }
 
 .toolbar{
@@ -20,4 +20,7 @@
   }
   span{
       color:#AED9E0;
+  }
+  .mat-menu-item{
+      color: #5E6472;
   }
