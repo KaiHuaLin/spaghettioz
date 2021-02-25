@@ -10,10 +10,10 @@
       <a mat-button class="navButton" fxHide.xs  [routerLink]="'/search'" (click) = "logout()">Logout</a>
     </div>
 
-    <button class="navButton" mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+    <button class="navButton" mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs *ngIf ="(this.auth.isLoggedIn != false)">
       <mat-icon>menu</mat-icon>
   </button>
-  <mat-menu #dropMenu="matMenu">
+  <mat-menu #dropMenu="matMenu" *ngIf ="(this.auth.isLoggedIn != false)">
       <a mat-menu-item class="navButton" [routerLink]="'/home'">Home </a>
       <a mat-menu-item class="navButton" [routerLink]="'/favorite'"> Favorites </a>
       <a mat-menu-item class="navButton active" [routerLink]="'/search'">Search </a>
