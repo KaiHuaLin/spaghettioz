@@ -25,8 +25,19 @@ export class DbService {
     console.log("Firestore: User created");
   }
 
-  async update_user(uid: string, updateInfo: object) {
+  update_user(uid: string, updateInfo: object) {
     this.usersCollection.doc(uid).update(updateInfo);
     console.log("Firestore: User updated");
+  }
+
+  async get_user(uid: string) {
+    const user = await this.usersCollection.doc(uid).ref.get();
+    if (user.exists) {
+      console.log("Firestore: get user: " + uid);
+      return user.data();
+    } else {
+      console.log("Firestore: User does not exist!");
+      return null;
+    }
   }
 }

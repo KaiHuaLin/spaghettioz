@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   // get current logged in user
-  checkSignInStatus(): Promise<firebase.User> {
+  getCurrentUser(): Promise<firebase.User> {
     return new Promise((resolve, reject) => {
       this.auth.onAuthStateChanged(user => {
         console.log(user.email + " logged in");
