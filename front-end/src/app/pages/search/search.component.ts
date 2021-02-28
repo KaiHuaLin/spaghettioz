@@ -13,6 +13,9 @@ export class SearchComponent implements OnInit {
   ingredientFormGroup: FormGroup;
   ingredients = [];
 
+  dietPreference: string;
+  diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
+
   constructor(private recipe: RecipeService) { 
     this.ingredientFormGroup = new FormGroup(
       {

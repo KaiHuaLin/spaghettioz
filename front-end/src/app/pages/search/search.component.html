@@ -16,24 +16,37 @@
         </svg>
   </div>
 </section>
-<div class="container">
+<div class="container ">
     <div class="card shadow text-center mt--300">
         <div class="row">
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-4 text-center ">
                 <h3>Input ingredients</h3>
-                <form [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
-                    <input class="form-control" formControlName="ingredient">
-                    <div class="text-center">
-                        <button class = "w-100 btn btn-default my-4" [disabled]="ingredientFormGroup.invalid">Add</button>
-                    </div>
+                <!-- <label id="example-radio-group-label">Diet Preference</label><br> -->
+                <mat-radio-group
+                        [(ngModel)]="dietPreference">
+                        <mat-radio-button class = "example-radio-button "*ngFor="let diet of diets" [value]="diet">
+                            {{diet}}
+                        </mat-radio-button>
+                        </mat-radio-group>
+                <div class = "row">
+                <form fxFlex [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
+                    <input fxFlex  class="form-control input" formControlName="ingredient">
+                    <button class = "btn-default plus" [disabled]="ingredientFormGroup.invalid">+</button>
+                    <!-- <div class="text-center margin">
+                        <button class = "btn btn-default" [disabled]="ingredientFormGroup.invalid">Add</button>
+                    </div> -->
                 </form>
+            </div>
+                <div>
+                    <button class = "btn btn-default " [disabled]="ingredientFormGroup.invalid">Search</button>
+                </div>
                 <mat-list class="text-center" *ngFor="let ingredient of ingredients">
-                    <mat-list-item> {{ingredient.ingredient}} </mat-list-item>
+                    <mat-checkbox [color]="blue">  {{ingredient.ingredient}} </mat-checkbox>
                 </mat-list>
             </div>
     
     
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                     <h2>Results</h2><br>
                     <mat-paginator [length]="100"
                         [pageSize]="10"

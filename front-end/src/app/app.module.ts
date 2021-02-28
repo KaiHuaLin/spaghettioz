@@ -25,6 +25,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -71,7 +73,9 @@ import { AuthGuard } from './guards/auth.guard';
     MatPaginatorModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [AuthService, DbService, RecipeService, AuthGuard],
   bootstrap: [AppComponent]
