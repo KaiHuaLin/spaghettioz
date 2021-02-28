@@ -16,24 +16,38 @@
         </svg>
   </div>
 </section>
-<div class="container">
+<div class="container ">
     <div class="card shadow text-center mt--300">
         <div class="row">
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-4 text-center ">
                 <h3>Input ingredients</h3>
-                <form [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
-                    <input class="form-control" formControlName="ingredient">
-                    <div class="text-center">
-                        <button class = "w-100 btn btn-default my-4" [disabled]="ingredientFormGroup.invalid">Add</button>
-                    </div>
+                <!-- <label id="example-radio-group-label">Diet Preference</label><br> -->
+                <mat-radio-group
+                        [(ngModel)]="dietPreference">
+                        <mat-radio-button class = "example-radio-button "*ngFor="let diet of diets" [value]="diet">
+                            {{diet}}
+                        </mat-radio-button>
+                        </mat-radio-group>
+                <div class = "row">
+                <form fxFlex [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
+                    <input fxFlex  class="form-control input" formControlName="ingredient">
+                    <button class = "btn-default plus" [disabled]="ingredientFormGroup.invalid">+</button>
+                    <!-- <div class="text-center margin">
+                        <button class = "btn btn-default" [disabled]="ingredientFormGroup.invalid">Add</button>
+                    </div> -->
                 </form>
-                <mat-list class="text-center" *ngFor="let ingredient of ingredients">
-                    <mat-list-item> {{ingredient.ingredient}} </mat-list-item>
+            </div>
+                <div>
+                    <button class = "btn btn-default " [disabled]="ingredientFormGroup.invalid">Search</button>
+                </div>
+                <mat-list class="text-center" *ngFor="let ingredient of ingredients; let i = index">
+                    <mat-checkbox [color]="blue">  {{ingredient.ingredient}} </mat-checkbox>
+                   <button mat-icon-button (click)="ingredients.splice(i, 1)"><mat-icon>delete</mat-icon></button> 
                 </mat-list>
             </div>
     
     
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                     <h2>Results</h2><br>
                     <mat-paginator [length]="100"
                         [pageSize]="10"
@@ -42,18 +56,20 @@
                 <div  class = "holder">
                     <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                         <mat-card-title>Recipe Name</mat-card-title>
+                        <button mat-icon-button color="warn" aria-label="Favite" (click)="toggleSelected()">
+                            <mat-icon *ngIf="selected">favorite</mat-icon>
+                            <mat-icon *ngIf="!selected">favorite_border</mat-icon>
+                        </button>
                         <mat-card-subtitle>Recipe Description</mat-card-subtitle>
                         <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
                         <mat-card-content>Description of recipe</mat-card-content>
                     </mat-card>
                     <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                         <mat-card-title>Recipe Name</mat-card-title>
-                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                        <mat-card-content>Description of recipe</mat-card-content>
-                    </mat-card>
-                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
-                        <mat-card-title>Recipe Name</mat-card-title>
+                        <button mat-icon-button color="warn" aria-label="Favite" (click)="toggleSelected()">
+                            <mat-icon *ngIf="selected">favorite</mat-icon>
+                            <mat-icon *ngIf="!selected">favorite_border</mat-icon>
+                        </button>
                         <mat-card-subtitle>Recipe Description</mat-card-subtitle>
                         <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
                         <mat-card-content>Description of recipe</mat-card-content>
@@ -62,21 +78,23 @@
                 <div  class = "holder">
                     <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                         <mat-card-title>Recipe Name</mat-card-title>
+                        <button mat-icon-button color="warn" aria-label="Favite" (click)="toggleSelected()">
+                            <mat-icon *ngIf="selected">favorite</mat-icon>
+                            <mat-icon *ngIf="!selected">favorite_border</mat-icon>
+                        </button>
                         <mat-card-subtitle>Recipe Description</mat-card-subtitle>
                         <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
                         <mat-card-content>Description of recipe</mat-card-content>
                     </mat-card>
                     <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                         <mat-card-title>Recipe Name</mat-card-title>
+                        <button mat-icon-button color="warn" aria-label="Favite" (click)="toggleSelected()">
+                            <mat-icon *ngIf="selected">favorite</mat-icon>
+                            <mat-icon *ngIf="!selected">favorite_border</mat-icon>
+                        </button>
                         <mat-card-subtitle>Recipe Description</mat-card-subtitle>
                         <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                        <mat-card-content>Description of recipe</mat-card-content>
-                    </mat-card>
-                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
-                        <mat-card-title>Recipe Name</mat-card-title>
-                        <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                        <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                        <mat-card-content>Description of recipe</mat-card-content>
+                        <mat-card-content >Description of recipe</mat-card-content>
                     </mat-card>
                 </div>
             </div>
