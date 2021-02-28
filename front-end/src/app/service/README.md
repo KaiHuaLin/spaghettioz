@@ -52,6 +52,21 @@ Please add try catch block around every method that is being called.
     * Ex: `const dbUser = await this.Db.get_user(currentUser.uid);`
 
 
+### Recipe Preview Service (firestore)
+**Use this when you are operating recipes in firebase firestore**
+
+1. Create_recipe:
+    * `create_recipe(recipe: Recipe)`
+    * return type: none
+    * Ex: `create_recipe({id: "2", imageLink: "<url>", title: "recipe name"})`
+
+2. Get_recipe_by_id:
+    * **use async/await**
+    * `get_recipe_by_id(id: string)`
+    * return type: Recipe
+    * Ex: `get_recipe_by_id("sjcbss12HHNJ")`
+
+
 ### Recipe API
 
 1. Get recipe by ID:
