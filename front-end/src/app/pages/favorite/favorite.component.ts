@@ -14,7 +14,7 @@ export class FavoriteComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getFavorite();
+    // this.getFavorite();
   }
 
   async getFavorite() {

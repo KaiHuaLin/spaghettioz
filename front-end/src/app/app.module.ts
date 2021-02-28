@@ -38,6 +38,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AuthService } from './service/auth/auth.service';
 import { DbService } from './service/db/db.service';
 import { RecipeService } from './service/recipe/recipe.service';
+import { RecipePreviewService } from './service/db/recipe-preview.service';
 import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
@@ -73,7 +74,7 @@ import { AuthGuard } from './guards/auth.guard';
     MatMenuModule,
     MatSidenavModule
   ],
-  providers: [AuthService, DbService, RecipeService, AuthGuard],
+  providers: [AuthService, DbService, RecipeService, RecipePreviewService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
