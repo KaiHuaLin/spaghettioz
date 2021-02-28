@@ -25,6 +25,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,6 +41,7 @@ import { AuthService } from './service/auth/auth.service';
 import { DbService } from './service/db/db.service';
 import { RecipeService } from './service/recipe/recipe.service';
 import { AuthGuard } from './guards/auth.guard';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { AuthGuard } from './guards/auth.guard';
     SearchComponent,
     FavoriteComponent,
     RecipePageComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,9 @@ import { AuthGuard } from './guards/auth.guard';
     MatPaginatorModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [AuthService, DbService, RecipeService, AuthGuard],
   bootstrap: [AppComponent]

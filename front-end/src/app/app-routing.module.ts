@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { RecipePageComponent } from './pages/recipe-page/recipe-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'recipe',
     component: RecipePageComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
     canActivate: [AuthGuard]
   },
   {
