@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {RecipeService} from '../../service/recipe/recipe.service';
 import { Query } from '../../models/Query'
@@ -16,6 +16,9 @@ export class SearchComponent implements OnInit {
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
+  @Input() selected: boolean;
+  @Output() selectedChange = new EventEmitter<boolean>();
+
   constructor(private recipe: RecipeService) { 
     this.ingredientFormGroup = new FormGroup(
       {
@@ -27,6 +30,12 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  //favorite/unfavorite. doesn't work completely yet since it needs to be tied with w/recipe id to not select all the icons
+  toggleSelected() {
+    this.selected = !this.selected;
+    this.selectedChange.emit(this.selected);
   }
 
   //adds ingredient

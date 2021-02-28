@@ -41,6 +41,7 @@ import { AuthService } from './service/auth/auth.service';
 import { DbService } from './service/db/db.service';
 import { RecipeService } from './service/recipe/recipe.service';
 import { AuthGuard } from './guards/auth.guard';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AuthGuard } from './guards/auth.guard';
     SearchComponent,
     FavoriteComponent,
     RecipePageComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

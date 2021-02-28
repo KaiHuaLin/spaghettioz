@@ -5,6 +5,7 @@
     <!-- only show if logged in  -->
     <div fxFlex fxLayoutAlign="flex-end"  *ngIf ="(this.auth.isLoggedIn != false)" >
       <a mat-button class="navButton" fxHide.xs  [routerLink]="'/home'">Home </a>
+      <a mat-button class="navButton" fxHide.xs  [routerLink]="'/shopping-cart'">Shopping Cart</a>
       <a mat-button class="navButton" fxHide.xs  [routerLink]="'/favorite'">Favorites</a>
       <a mat-button class="navButton" fxHide.xs  [routerLink]="'/search'">Search</a>
       <a mat-button class="navButton" fxHide.xs  [routerLink]="'/search'" (click) = "logout()">Logout</a>
@@ -15,6 +16,7 @@
   </button>
   <mat-menu #dropMenu="matMenu" *ngIf ="(this.auth.isLoggedIn != false)">
       <a mat-menu-item class="navButton" [routerLink]="'/home'">Home </a>
+      <a mat-menu-item class="navButton active" [routerLink]="'/shopping-cart'">Shopping Cart </a>
       <a mat-menu-item class="navButton" [routerLink]="'/favorite'"> Favorites </a>
       <a mat-menu-item class="navButton active" [routerLink]="'/search'">Search </a>
       <a mat-menu-item class="navButton" (click) = "logout()" *ngIf ="(this.auth.isLoggedIn != false)"  > Logout </a>
