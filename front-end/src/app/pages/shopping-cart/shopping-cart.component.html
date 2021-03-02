@@ -1,1 +1,56 @@
-<p>to be added</p>
+<main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+        <h1 class="display-1 text-center text-white" >Shopping Cart</h1>
+        <div class="shape shape-style-1 shape-primary alpha-4">
+            <img class = "image" src = "../../assets/img/basic.png" >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                </div>
+              </div>
+            </div>
+            <div  class = "holder">
+                <h2 class = "text-center">Add to Shopping cart</h2>
+                <div class = "row">
+                <form fxFlex [formGroup]="shoppingCartFormGroup" (ngSubmit)="addToList(shoppingCartFormGroup.value)">
+                    <input fxFlex  class="form-control input" formControlName="listItem">
+                    <button type = "submit" class = "btn-default plus" [disabled]="shoppingCartFormGroup.invalid">+</button>
+                </form>
+            </div>
+                <div *ngIf = "listItems.length===0">
+                    <h5 class = "text-center">Please add an item to your list</h5>
+                </div>
+                <mat-list class="text-left list" *ngFor="let listItem of listItems; let i = index">
+                     <span>{{listItem.listItem}} </span>
+                   <button class = "del" mat-icon-button (click)="listItems.splice(i, 1)"><mat-icon>delete</mat-icon></button> 
+                </mat-list>
+            </div>
+          </div>
+          
+        </div>
+        </div>
+        
+    </section>
+</main>
+    <div class="container">
+        <hr>
+        <div class="row align-items-center justify-content-md-between">
+            <div class="col-md-6">
+                <a>Spaghettio Group 2021</a>
+            </div>
+        </div>
+    </div>
+ 
