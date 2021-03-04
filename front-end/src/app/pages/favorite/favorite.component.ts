@@ -11,10 +11,11 @@ import { RecipePreviewService } from '../../service/db/recipe-preview.service';
   styleUrls: ['./favorite.component.scss']
 })
 export class FavoriteComponent implements OnInit {
-
+  
+  fList = [];
   constructor(private AuthService: AuthService, private Db: DbService, private RecipePreview: RecipePreviewService, private router: Router) {
    }
-
+  
   ngOnInit(): void {
     this.getFavorite();
   }
@@ -29,13 +30,12 @@ export class FavoriteComponent implements OnInit {
     // console.log(dbUser);
     // console.log(dbUser.favorite);
     // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
-    var fList = [];
     dbUser.favorite.forEach(async element =>{
       const temp = await this.RecipePreview.get_recipe_by_id(element);
-      fList.push(temp);   
+      this.fList.push(temp);   
     });
     
-    console.log(fList);
+    console.log(this.fList);
     
     // for (let i = 0; i < dbUser.favorite.length; i++ ) {
       
