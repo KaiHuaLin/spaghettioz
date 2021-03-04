@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  shoppingCartFormGroup: FormGroup;
+  listItems = [];
+
+  constructor() { 
+    this.shoppingCartFormGroup = new FormGroup(
+      {
+        listItem: new FormControl(""),
+      },
+      Validators.required
+    );
+    
+  }
 
   ngOnInit(): void {
+  }
+
+   //adds item to list
+   addToList(listItem){
+    this.listItems.push(listItem);
+    this.shoppingCartFormGroup.reset();
+    console.log(listItem);
+    console.log(this.listItems);
   }
 
 }
