@@ -4,6 +4,8 @@ import { RecipeService } from '../../service/recipe/recipe.service';
 import { RecipePreviewService } from '../../service/db/recipe-preview.service';
 import { Query } from '../../models/Query';
 import { Recipe } from '../../models/Recipe';
+import { DbService } from '../../service/db/db.service';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -94,9 +96,12 @@ export class SearchComponent implements OnInit {
   }
 
 
-  /*
-    1)access user
-    2)get ingredient list
-    3)populate ingredients
-  */
+    // async user(){
+    //   //1)access user
+    //   const AuthService= AuthService;
+    //   const Db= DbService;
+    //   const currentUser = await AuthService.getCurrentUser();
+    //   //2)get ingredient list
+    //   //3)populate ingredients
+    // }
 }
