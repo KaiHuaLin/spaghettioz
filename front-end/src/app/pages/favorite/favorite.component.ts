@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Recipe } from 'src/app/models/Recipe';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { DbService } from '../../service/db/db.service';
 import { RecipePreviewService } from '../../service/db/recipe-preview.service';
@@ -21,22 +22,26 @@ export class FavoriteComponent implements OnInit {
   async getFavorite() {
     // get current user
     const currentUser = await this.AuthService.getCurrentUser();
-    console.log(currentUser);
+    // console.log(currentUser);
 
     // get user in db so that you can get or write favorite field
     const dbUser = await this.Db.get_user(currentUser.uid);
-    console.log(dbUser);
-    console.log(dbUser.favorite);
+    // console.log(dbUser);
+    // console.log(dbUser.favorite);
     // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
+    var list = [];
+    dbUser.favorite.forEach(element =>{
+      list.push(this.RecipePreview.get_recipe_by_id(element));   
+    });
     
-    for (let i = 0; i < dbUser.favorite.length; i++ ) {
-      console.log(dbUser.favorite[i])
-    }
+    console.log(list);
+    
+    // for (let i = 0; i < dbUser.favorite.length; i++ ) {
+      
+    //   // console.log(dbUser.favorite[i])
+    // }
     
     // need to properly parse array in future, for loop?
   }
 
-  // 
-
-  //
 }

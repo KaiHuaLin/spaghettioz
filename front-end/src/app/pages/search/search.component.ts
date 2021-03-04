@@ -92,4 +92,11 @@ export class SearchComponent implements OnInit {
     const recipe = await this.recipePreview.get_recipe_by_id("716429");
     console.log(recipe);
   }
+
+
+  /*
+    1)access user
+    2)get ingredient list
+    3)populate ingredients
+  */
 }
