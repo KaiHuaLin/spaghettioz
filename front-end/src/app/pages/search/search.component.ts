@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  constructor(private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+  constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),

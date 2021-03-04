@@ -29,12 +29,13 @@ export class FavoriteComponent implements OnInit {
     // console.log(dbUser);
     // console.log(dbUser.favorite);
     // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
-    var list = [];
-    dbUser.favorite.forEach(element =>{
-      list.push(this.RecipePreview.get_recipe_by_id(element));   
+    var fList = [];
+    dbUser.favorite.forEach(async element =>{
+      const temp = await this.RecipePreview.get_recipe_by_id(element);
+      fList.push(temp);   
     });
     
-    console.log(list);
+    console.log(fList);
     
     // for (let i = 0; i < dbUser.favorite.length; i++ ) {
       
