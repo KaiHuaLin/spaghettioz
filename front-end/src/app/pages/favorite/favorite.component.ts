@@ -35,14 +35,23 @@ export class FavoriteComponent implements OnInit {
       this.fList.push(temp);   
     });
     
-    console.log(this.fList);
-    
+    // console.log(this.fList);
+    await this.updateFavorite();
+    console.log("hi");
     // for (let i = 0; i < dbUser.favorite.length; i++ ) {
       
     //   // console.log(dbUser.favorite[i])
     // }
     
     // need to properly parse array in future, for loop?
+  }
+
+  async updateFavorite(){
+    this.fList.push("test");
+    const currentUser = await this.AuthService.getCurrentUser();
+    const dbUser = await this.Db.get_user(currentUser.uid);
+    await this.Db.update_user(dbUser.uid, this.fList);
+    console.log(this.fList);
   }
 
 }
