@@ -17,13 +17,18 @@ export class SearchComponent implements OnInit {
   ingredientFormGroup: FormGroup;
   ingredients = [];
   selectedIngredients = [];
-  viewrecipe;  
+  viewrecipe = [];
+  tempviewrecipe = [];
+
+
+  //Variables for paginator
+  pageIndex: number = 0;
+  pageSize: number = 2;
+  lowValue: number = 0;
+  highValue: number = 2;
 
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
-
-  @Input() selected: boolean;
-  @Output() selectedChange = new EventEmitter<boolean>();
 
   constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
     this.ingredientFormGroup = new FormGroup(
@@ -39,10 +44,22 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //favorite/unfavorite. doesn't work completely yet since it needs to be tied with w/recipe id to not select all the icons
-  toggleSelected() {
-    this.selected = !this.selected;
-    this.selectedChange.emit(this.selected);
+  //favorites a specific recipe
+  favorite(id: string) {
+    document.getElementById(id).style.color = "red";
+  }
+
+  //for the paginator
+  public getPaginator(event){
+    if(event.pageIndex === this.pageIndex + 1){
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue = this.highValue + this.pageSize;
+    }
+    else if(event.pageIndex === this.pageIndex - 1){
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this. highValue - this.pageSize;
+    }
+    this.pageIndex = event.pageIndex;
   }
 
   //get value of checkboc
@@ -79,8 +96,14 @@ export class SearchComponent implements OnInit {
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
-      this.viewrecipe = recipes;
-      console.log(recipes);
+      const results = recipes.results;
+      results.forEach(element => {
+        console.log(element.id.toString());
+        this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
+        this.getRecipe(element.id.toString());
+      });
+      this.viewrecipe = this.tempviewrecipe;
+
     }
     catch {
       console.log("errorrrrrrrrrrr");
@@ -88,21 +111,19 @@ export class SearchComponent implements OnInit {
   }
 
   // example
-  createPreviewRecipe() {
+  createPreviewRecipe(id: string, image, title) {
     const recipe: Recipe = {
-      id: "716429",
-      image: "https://spoonacular.com/recipeImages/715538-312x231.jpg",
-      title: "What to make for dinner tonight?? Bruschetta Style Pork & Pasta",
+      id: id,
+      image: image,
+      title: title,
     }
-
     this.recipePreview.create_recipe(recipe);
-    
   }
 
   // example
-  async getRecipe(diet, ing) {
-    const recipe = await this.recipePreview.get_recipe_by_id("716429");
-    console.log(recipe);
+  async getRecipe(id) {
+    const recipe = await this.recipePreview.get_recipe_by_id(id);
+    this.tempviewrecipe.push(recipe);
   }
 
 
