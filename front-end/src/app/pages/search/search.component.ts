@@ -17,8 +17,7 @@ export class SearchComponent implements OnInit {
   ingredientFormGroup: FormGroup;
   ingredients = [];
   selectedIngredients = [];
-  viewrecipe;
-  
+  viewrecipe;  
 
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
@@ -53,10 +52,10 @@ export class SearchComponent implements OnInit {
 
   //adds ingredient
   addIngredient(ingredient){
+    console.log(ingredient);
     this.ingredients.push(ingredient);
     this.ingredientFormGroup.reset();
-    console.log(ingredient);
-    console.log(this.ingredients);
+    //console.log(this.ingredients);
   }
 
   // examples
