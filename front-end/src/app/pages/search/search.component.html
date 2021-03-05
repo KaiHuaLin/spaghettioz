@@ -49,23 +49,18 @@
     
             <div class="col-lg-8" >
                     <h2>Results</h2><br>
-                    <mat-paginator [length]="100"
-                        [pageSize]="10"
-                        [pageSizeOptions]="[5, 10, 25, 100]">
-                    </mat-paginator>
-                    
-                <div  class = "holder" *ngFor= "let recipe of viewrecipe">
-                    <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
-                        <mat-card-title>{{recipe.title}}</mat-card-title>
-                        <button mat-icon-button color="warn" aria-label="Favite" (click)="toggleSelected()">
-                            <mat-icon *ngIf="selected">favorite</mat-icon>
-                            <mat-icon *ngIf="!selected">favorite_border</mat-icon>
-                        </button>
-                        <mat-card-subtitle></mat-card-subtitle>
-                        <img src = {{recipe.image}} mat-card-image alt = "recipe">
-                        <mat-card-content> id: {{rec.id}}</mat-card-content>
-                    </mat-card>
-                </div>
+                    <mat-paginator [length]="viewrecipe.length" [pageSize]="pageSize" (page)="getPaginator($event)"></mat-paginator>
+                    <div class = "holder" *ngFor= "let recipe of viewrecipe | slice: lowValue : highValue">
+                        <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                            <mat-card-title>{{recipe.title}}</mat-card-title>
+                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)">
+                                <mat-icon id = {{recipe.id}} [ngStyle]="{'color':'black'}">favorite</mat-icon>
+                            </button>
+                            <mat-card-subtitle></mat-card-subtitle>
+                            <img src = {{recipe.image}} mat-card-image alt = "recipe">
+                            <mat-card-content> id: {{recipe.id}}</mat-card-content>
+                        </mat-card>
+                    </div>            
                 <!-- <div  class = "holder">
                     <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                         <mat-card-title>Recipe Name</mat-card-title>
