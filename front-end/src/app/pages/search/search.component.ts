@@ -16,6 +16,8 @@ export class SearchComponent implements OnInit {
 
   ingredientFormGroup: FormGroup;
   ingredients = [];
+  selectedIngredients = [];
+  viewrecipe;  
 
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
@@ -27,6 +29,7 @@ export class SearchComponent implements OnInit {
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
+        checked:new FormControl("")
       },
       Validators.required
     );
@@ -42,12 +45,17 @@ export class SearchComponent implements OnInit {
     this.selectedChange.emit(this.selected);
   }
 
+  //get value of checkboc
+  getCheckboxes() {
+    this.selectedIngredients = this.ingredients.filter(x => x.checked === true).map(x => x.ingredient);
+  }
+
   //adds ingredient
   addIngredient(ingredient){
+    console.log(ingredient);
     this.ingredients.push(ingredient);
     this.ingredientFormGroup.reset();
-    console.log(ingredient);
-    console.log(this.ingredients);
+    //console.log(this.ingredients);
   }
 
   // examples
@@ -64,13 +72,14 @@ export class SearchComponent implements OnInit {
   }
 
   // examples
-  async searchRecipesByQuery() {
+  async searchRecipesByQuery(diet, ingredients) {
     const query: Query = {
-      includeIngredients: "tomato,cheese",
+      includeIngredients: ingredients,
     } 
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
+      this.viewrecipe = recipes;
       console.log(recipes);
     }
     catch {
@@ -87,10 +96,11 @@ export class SearchComponent implements OnInit {
     }
 
     this.recipePreview.create_recipe(recipe);
+    
   }
 
   // example
-  async getRecipe() {
+  async getRecipe(diet, ing) {
     const recipe = await this.recipePreview.get_recipe_by_id("716429");
     console.log(recipe);
   }

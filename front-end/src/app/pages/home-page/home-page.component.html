@@ -21,7 +21,7 @@
                 <span>Get started today</span>
               </h1>
               <p class="lead  text-white">Start finding recipes that you can make with ingredients you already have on hand.</p>
-              <div class="btn-wrapper">
+              <div class="btn-wrapper" *ngIf ="(this.auth.isLoggedIn == false)" >
                 <a [routerLink]="['/login']"class="btn btn-white btn-icon mb-3 mb-sm-1">
                   <span class="btn-inner--text btn-block">Login</span>
                 </a>
