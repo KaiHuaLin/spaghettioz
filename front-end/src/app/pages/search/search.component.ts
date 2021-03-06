@@ -45,7 +45,16 @@ export class SearchComponent implements OnInit {
 
   //favorites a specific recipe
   favorite(id: string) {
-    document.getElementById(id).style.color = "red";
+    //unfavorite 
+    //still need logic to connect recipe to user
+    if(document.getElementById(id).style.color == "red"){
+      document.getElementById(id).style.color = "black";
+    }
+    //favorite recipe
+    //also needs logic
+    else if(document.getElementById(id).style.color == "black"){
+      document.getElementById(id).style.color = "red";
+    }
   }
 
   //for the paginator
