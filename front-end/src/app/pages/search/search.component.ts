@@ -18,8 +18,6 @@ export class SearchComponent implements OnInit {
   ingredients = [];
   selectedIngredients = [];
   viewrecipe = [];
-  tempviewrecipe = [];
-
 
   //Variables for paginator
   pageIndex: number = 0;
@@ -90,6 +88,12 @@ export class SearchComponent implements OnInit {
 
   // examples
   async searchRecipesByQuery(diet, ingredients) {
+    if(ingredients.length == 0){
+      return;
+    }
+    if(this.viewrecipe.length != 0){
+      this.viewrecipe = [];
+    }
     const query: Query = {
       includeIngredients: ingredients,
     } 
@@ -102,8 +106,6 @@ export class SearchComponent implements OnInit {
         this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
         this.getRecipe(element.id.toString());
       });
-      this.viewrecipe = this.tempviewrecipe;
-
     }
     catch {
       console.log("errorrrrrrrrrrr");
@@ -123,7 +125,7 @@ export class SearchComponent implements OnInit {
   // example
   async getRecipe(id) {
     const recipe = await this.recipePreview.get_recipe_by_id(id);
-    this.tempviewrecipe.push(recipe);
+    this.viewrecipe.push(recipe);
   }
 
 
