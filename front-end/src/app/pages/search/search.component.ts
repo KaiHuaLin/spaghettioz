@@ -105,18 +105,30 @@ export class SearchComponent implements OnInit {
     if(this.viewrecipe.length != 0){
       this.viewrecipe = [];
     }
+
+    // concante each ingrediants with comma, which is required by the spoonacular Query
+    let ingredientList = "";
+    ingredients.forEach(ingredient => {
+      ingredientList += ingredient + ",";
+    });
+
     const query: Query = {
-      includeIngredients: ingredients,
+      includeIngredients: ingredientList,
     } 
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
       const results = recipes.results;
-      results.forEach(element => {
-        console.log(element.id.toString());
-        this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
-        this.getRecipe(element.id.toString());
-      });
+      
+      if (results.length !== 0) {
+        results.forEach(element => {
+          console.log(element.id.toString());
+          this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
+          this.getRecipe(element.id.toString());
+        });
+      } else {
+        console.log("no result");
+      }
     }
     catch {
       console.log("errorrrrrrrrrrr");
