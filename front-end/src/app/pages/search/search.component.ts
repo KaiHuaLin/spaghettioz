@@ -57,6 +57,15 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
+  //<<to be implemented>> update fList in favorite function and call updateFavorite
+  // update favorite updates user favorite array <<paramitor string array>>
+  private async updateFavorite(fList){
+    const currentUser = await this.AuthService.getCurrentUser();
+    const dbUser = await this.Db.get_user(currentUser.uid);
+    await this.Db.update_user(dbUser.uid, {Favorite:fList});
+  }
+
   //for the paginator
   public getPaginator(event){
     if(event.pageIndex === this.pageIndex + 1){
