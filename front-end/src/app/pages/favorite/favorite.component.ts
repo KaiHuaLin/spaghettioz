@@ -23,27 +23,16 @@ export class FavoriteComponent implements OnInit {
   async getFavorite() {
     // get current user
     const currentUser = await this.AuthService.getCurrentUser();
-    // console.log(currentUser);
-
     // get user in db so that you can get or write favorite field
     const dbUser = await this.Db.get_user(currentUser.uid);
-    // console.log(dbUser);
-    console.log(dbUser.favorite);
+    // console.log(dbUser.favorite);
     // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
     dbUser.favorite.forEach(async element =>{
       const temp = await this.RecipePreview.get_recipe_by_id(element);
-      this.fList.push(temp);   
+      this.fList.push(temp);
+      // console.log(temp);   
     });
-    
     // console.log(this.fList);
-    // await this.updateFavorite();
-    // console.log("hi");
-    // for (let i = 0; i < dbUser.favorite.length; i++ ) {
-      
-    //   // console.log(dbUser.favorite[i])
-    // }
-    
-    // need to properly parse array in future, for loop?
   }
 
   async updateFavorite(){
