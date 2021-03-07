@@ -27,7 +27,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -79,8 +78,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     MatMenuModule,
     MatSidenavModule,
     MatCheckboxModule,
-    MatRadioModule,
-    MatSnackBarModule
+    MatRadioModule
   ],
   providers: [AuthService, DbService, RecipeService, RecipePreviewService, AuthGuard],
   bootstrap: [AppComponent]
