@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecipeService } from '../../service/recipe/recipe.service';
 import { RecipePreviewService } from '../../service/db/recipe-preview.service';
 import { Query } from '../../models/Query';
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { Recipe } from '../../models/Recipe';
 import { DbService } from '../../service/db/db.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -19,6 +18,8 @@ export class SearchComponent implements OnInit {
   ingredients = [];
   selectedIngredients = [];
   viewrecipe = [];
+  tempviewrecipe = [];
+
 
   //Variables for paginator
   pageIndex: number = 0;
@@ -29,7 +30,7 @@ export class SearchComponent implements OnInit {
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
-  constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+  constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
@@ -45,16 +46,7 @@ export class SearchComponent implements OnInit {
 
   //favorites a specific recipe
   favorite(id: string) {
-    //unfavorite 
-    //still need logic to connect recipe to user
-    if(document.getElementById(id).style.color == "red"){
-      document.getElementById(id).style.color = "black";
-    }
-    //favorite recipe
-    //also needs logic
-    else if(document.getElementById(id).style.color == "black"){
-      document.getElementById(id).style.color = "red";
-    }
+    document.getElementById(id).style.color = "red";
   }
 
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
@@ -107,37 +99,20 @@ export class SearchComponent implements OnInit {
 
   // examples
   async searchRecipesByQuery(diet, ingredients) {
-    if(ingredients.length == 0){
-      this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
-      return;
-    }
-    if(this.viewrecipe.length != 0){
-      this.viewrecipe = [];
-    }
-
-    // concante each ingrediants with comma, which is required by the spoonacular Query
-    let ingredientList = "";
-    ingredients.forEach(ingredient => {
-      ingredientList += ingredient + ",";
-    });
-
     const query: Query = {
-      includeIngredients: ingredientList,
+      includeIngredients: ingredients,
     } 
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
       const results = recipes.results;
-      
-      if (results.length !== 0) {
-        results.forEach(element => {
-          console.log(element.id.toString());
-          this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
-          this.getRecipe(element.id.toString());
-        });
-      } else {
-        console.log("no result");
-      }
+      results.forEach(element => {
+        console.log(element.id.toString());
+        this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
+        this.getRecipe(element.id.toString());
+      });
+      this.viewrecipe = this.tempviewrecipe;
+
     }
     catch {
       console.log("errorrrrrrrrrrr");
@@ -157,7 +132,7 @@ export class SearchComponent implements OnInit {
   // example
   async getRecipe(id) {
     const recipe = await this.recipePreview.get_recipe_by_id(id);
-    this.viewrecipe.push(recipe);
+    this.tempviewrecipe.push(recipe);
   }
 
 
