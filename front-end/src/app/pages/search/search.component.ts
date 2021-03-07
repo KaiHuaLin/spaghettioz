@@ -1,13 +1,13 @@
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecipeService } from '../../service/recipe/recipe.service';
 import { RecipePreviewService } from '../../service/db/recipe-preview.service';
 import { Query } from '../../models/Query';
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Recipe } from '../../models/Recipe';
 import { DbService } from '../../service/db/db.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
-
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-search',
@@ -30,11 +30,20 @@ export class SearchComponent implements OnInit {
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
-  constructor(private AuthService: AuthService, private snackBar: MatSnackBar,private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+  constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+    this.ingredientFormGroup = new FormGroup(
+      {
+        ingredient: new FormControl(""),
+        checked:new FormControl("")
+      },
+      Validators.required
+    );
+    
   }
 
   ngOnInit(): void {
   }
+
   //favorites a specific recipe
   favorite(id: string) {
     //unfavorite 
@@ -48,6 +57,7 @@ export class SearchComponent implements OnInit {
       document.getElementById(id).style.color = "red";
     }
   }
+  
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
   //<<to be implemented>> update fList in favorite function and call updateFavorite
   // update favorite updates user favorite array <<paramitor string array>>
@@ -113,6 +123,7 @@ export class SearchComponent implements OnInit {
     ingredients.forEach(ingredient => {
       ingredientList += ingredient + ",";
     });
+
     const query: Query = {
       includeIngredients: ingredientList,
     } 
@@ -129,6 +140,7 @@ export class SearchComponent implements OnInit {
       } else {
         console.log("no result");
       }
+
     }
     catch {
       console.log("errorrrrrrrrrrr");
