@@ -30,7 +30,11 @@ export class SearchComponent implements OnInit {
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
+<<<<<<< HEAD
   constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+=======
+  constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
+>>>>>>> parent of 51ba5ae (update favorite.component is in search now)
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
