@@ -31,14 +31,10 @@ export class SearchComponent implements OnInit {
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
 <<<<<<< HEAD
-<<<<<<< HEAD
   constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
 =======
   constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
 >>>>>>> parent of 51ba5ae (update favorite.component is in search now)
-=======
-  constructor(private AuthService: AuthService, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
->>>>>>> parent of 4654c41 (Revert "Revert "Merge branch 'main' of https://github.com/KaiHuaLin/spaghettioz into main"")
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
@@ -55,18 +51,6 @@ export class SearchComponent implements OnInit {
   //favorites a specific recipe
   favorite(id: string) {
     document.getElementById(id).style.color = "red";
-<<<<<<< HEAD
-=======
-  }
-
-  //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
-  //<<to be implemented>> update fList in favorite function and call updateFavorite
-  // update favorite updates user favorite array <<paramitor string array>>
-  private async updateFavorite(fList){
-    const currentUser = await this.AuthService.getCurrentUser();
-    const dbUser = await this.Db.get_user(currentUser.uid);
-    await this.Db.update_user(dbUser.uid, {Favorite:fList});
->>>>>>> parent of 4654c41 (Revert "Revert "Merge branch 'main' of https://github.com/KaiHuaLin/spaghettioz into main"")
   }
 
   //for the paginator
