@@ -7,7 +7,6 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Recipe } from '../../models/Recipe';
 import { DbService } from '../../service/db/db.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { FavoriteComponent } from '../favorite/favorite.component';
 
 @Component({
   selector: 'app-search',
@@ -30,7 +29,7 @@ export class SearchComponent implements OnInit {
   dietPreference: string;
   diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
 
-  constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService ) { 
+  constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
@@ -42,7 +41,6 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.updateFavorite(['1095945','631732']);
   }
 
   //favorites a specific recipe
@@ -61,26 +59,12 @@ export class SearchComponent implements OnInit {
 
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
   //<<to be implemented>> update fList in favorite function and call updateFavorite
-  //update favorite updates user favorite array <<paramitor string array>>
+  // update favorite updates user favorite array <<paramitor string array>>
   private async updateFavorite(fList){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     await this.Db.update_user(dbUser.uid, {Favorite:fList});
   }
-
-  // async getFavorite() {
-  //   let fList = [];
-  //   // get current user
-  //   const currentUser = await this.AuthService.getCurrentUser();
-  //   // get user in db so that you can get or write favorite field
-  //   const dbUser = await this.Db.get_user(currentUser.uid);
-  //   dbUser.favorite.forEach(async element =>{
-  //     const temp = await this.recipePreview.get_recipe_by_id(element);
-  //     fList.push(temp);  
-  //   });
-  //   // console.log(fList);
-  //   // return (fList);
-  // }
 
   //for the paginator
   public getPaginator(event){
