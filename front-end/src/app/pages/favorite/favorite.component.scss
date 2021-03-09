@@ -3,15 +3,13 @@
 //     width:50%;
 // }
 
-mat-card{
-    height:30%;
-    width:80%;
+.mat-card{
+    height:100%;
+    width:100%;
     text-align: center;
-    margin-left:5rem;
-    margin-right:2rem;
-    margin-bottom:2.5em;
-    margin-top:2.5em;
     margin:auto;
+    margin-bottom:2.5em;
+    margin-top:2.5rem;
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.438); 
 }
 // .holder{
@@ -77,5 +75,5 @@ mat-card{
     height:100%;
 }
 .card{
-    height:80rem;
+    height:70rem;
 }

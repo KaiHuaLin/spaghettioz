@@ -35,7 +35,8 @@
               </div>
             </div>
             <div  class = "holder" *ngIf = "fList" >
-              <div *ngFor = "let fav of fList">
+              <mat-paginator [length]="fList.length" [pageSize]="pageSize" (page)="getPaginator($event)"></mat-paginator>
+              <div *ngFor = "let fav of fList| slice: lowValue : highValue">
                 <mat-card  fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                     <mat-card-title>{{fav.title}}</mat-card-title>
                     <mat-card-subtitle>{{fav.id}}</mat-card-subtitle>
