@@ -38,6 +38,7 @@ export class SearchComponent implements OnInit {
   //favorites a specific recipe
   favorite(id: string) {
     document.getElementById(id).style.color = "red";
+    this.updateFavorite(document.getElementById(id));
   }
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
   //<<to be implemented>> update fList in favorite function and call updateFavorite
