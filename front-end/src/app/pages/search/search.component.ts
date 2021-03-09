@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
   highValue: number = 2;
 
   dietPreference: string;
-  diets: string[] = ['Vegetarian', 'Vegan', 'Gluten Free', 'Dairy Free', "None"];
+  diets = [{name:'Vegetarian', checked: false},{name:'Vegan', checked: false},{name:'Gluten Free', checked: false},{name:'Dairy Free', checked: false},{name:'None', checked: true}];
 
   constructor(private AuthService: AuthService, private snackBar: MatSnackBar, private Db: DbService,private recipe: RecipeService, private recipePreview: RecipePreviewService) { 
     this.ingredientFormGroup = new FormGroup(
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
       },
       Validators.required
     );
-    
+    this.dietPreference = 'None';
   }
 
   ngOnInit(): void {
@@ -110,6 +110,7 @@ export class SearchComponent implements OnInit {
 
   // examples
   async searchRecipesByQuery(diet, ingredients) {
+    console.log(diet);
     if(ingredients.length == 0){
       this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
       return;
