@@ -27,32 +27,25 @@
               <div class="col-lg-4 order-lg-1">
                 <div class="card-profile-stats d-flex justify-content-center">
                   <div>
-                    <span class="heading">4</span>
+                    <span *ngIf = "fList" class="heading">{{fList.length}}</span>
                     <span class="description">Favorites</span>
                   </div>
                   
                 </div>
               </div>
             </div>
-            <div  class = "holder" *ngIf = "!fList" >
-                <mat-card *ngFor = "let fav of fList" fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
-                    <mat-card-title>{{fav.name}}</mat-card-title>
-                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                    <mat-card-content>Description of recipe</mat-card-content>
+            <div  class = "holder" *ngIf = "fList" >
+              <div *ngFor = "let fav of fList">
+                <mat-card  fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
+                    <mat-card-title>{{fav.title}}</mat-card-title>
+                    <mat-card-subtitle>{{fav.id}}</mat-card-subtitle>
+                    <img src = {{fav.image}} mat-card-image alt = "recipe">
+                    <!-- <mat-card-content>Description of recipe</mat-card-content> -->
                     <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
                 </mat-card>
-                <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
-                    <mat-card-title>Recipe Name</mat-card-title>
-                    <mat-card-subtitle>Recipe Description</mat-card-subtitle>
-                    <img src = "../../../assets/img/undraw_breakfast_psiw.svg"mat-card-image alt = "recipe">
-                    <mat-card-content>Description of recipe</mat-card-content>
-                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
-                </mat-card>
+              </div>
             </div>
-            
-            
-            
+
             <!-- <div class="text-center mt-5">
               <h3>Jessica Jones
                 <span class="font-weight-light">, 27</span>

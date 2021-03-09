@@ -1,3 +1,4 @@
+import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/Recipe';
@@ -18,6 +19,7 @@ export class FavoriteComponent implements OnInit {
   
   ngOnInit(): void {
     this.getFavorite();
+    console.log(this.fList);
   }
 
   async getFavorite() {
