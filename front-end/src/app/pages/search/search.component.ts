@@ -50,24 +50,39 @@ export class SearchComponent implements OnInit {
     //still need logic to connect recipe to user
     if(document.getElementById(id).style.color == "red"){
       document.getElementById(id).style.color = "black";
+      this.removeFromFavorite( document.getElementById(id).id);
     }
     //favorite recipe
     //also needs logic
     else if(document.getElementById(id).style.color == "black"){
       document.getElementById(id).style.color = "red";
+      this.addToFavorite(document.getElementById(id).id);
     }
   }
   
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
   //<<to be implemented>> update fList in favorite function and call updateFavorite
   // update favorite updates user favorite array <<paramitor string array>>
-  private async updateFavorite(str){
+  private async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
-    list.push(str)
+    if (list.indexOf(str) <= -1){
+      list.push(str);
+    }
     await this.Db.update_user(dbUser.uid, {favorite:list});
  }
+
+  private async removeFromFavorite(str){
+    const currentUser = await this.AuthService.getCurrentUser();
+    const dbUser = await this.Db.get_user(currentUser.uid);
+    var list = dbUser.favorite;
+    const index = list.indexOf(str);
+    if (index > 1){
+      list.splice(index,1);
+    }
+    await this.Db.update_user(dbUser.uid, {favorite:list});
+  }
 
   //for the paginator
   public getPaginator(event){

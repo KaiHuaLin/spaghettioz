@@ -47,21 +47,31 @@ export class FavoriteComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     // get user in db so that you can get or write favorite field
     const dbUser = await this.Db.get_user(currentUser.uid);
-    // console.log(dbUser.favorite);
-    // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
     dbUser.favorite.forEach(async element =>{
       const temp = await this.RecipePreview.get_recipe_by_id(element);
       this.fList.push(temp);
-      // console.log(temp);   
     });
-    // console.log(this.fList);
   }
 
-  async updateFavorite(){
+  private async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
-    await this.Db.update_user(dbUser.uid, {favorite:this.fList});
-    console.log(this.fList);
+    var list = dbUser.favorite;
+    if (list.indexOf(str) <= -1){
+      list.push(str);
+    }
+    await this.Db.update_user(dbUser.uid, {favorite:list});
+ }
+
+ private async removeFromFavorite(str){
+  const currentUser = await this.AuthService.getCurrentUser();
+  const dbUser = await this.Db.get_user(currentUser.uid);
+  var list = dbUser.favorite;
+  const index = list.indexOf(str);
+  if (index > 1){
+    list.splice(index,1);
   }
+  await this.Db.update_user(dbUser.uid, {favorite:list});
+}
 
 }
