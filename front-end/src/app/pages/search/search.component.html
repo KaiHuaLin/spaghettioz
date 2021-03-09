@@ -21,20 +21,16 @@
         <div class="row">
             <div class="col-lg-4 text-center ">
                 <h3>Input ingredients</h3>
-                <!-- <label id="example-radio-group-label">Diet Preference</label><br> -->
                 <mat-radio-group
                         [(ngModel)]="dietPreference">
-                        <mat-radio-button class = "example-radio-button "*ngFor="let diet of diets" [value]="diet">
-                            {{diet}}
+                        <mat-radio-button class = "example-radio-button "*ngFor="let diet of diets" [value]="diet.name" >
+                            {{diet.name}}
                         </mat-radio-button>
                         </mat-radio-group>
                 <div class = "row">
                 <form fxFlex [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
                     <input fxFlex class="form-control input" formControlName="ingredient">
                     <button class = "btn-default plus">+</button>
-                    <!-- <div class="text-center margin">
-                        <button class = "btn btn-default" [disabled]="ingredientFormGroup.invalid">Add</button>
-                    </div> -->
                 </form>
             </div>
                 <div>
