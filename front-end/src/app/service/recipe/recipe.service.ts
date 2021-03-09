@@ -26,6 +26,8 @@ export class RecipeService {
     }});
 
     const recipes: any = await this.http.get(`${this.SPOONACULAR_URL}/recipes/complexSearch`, {params}).toPromise();
+    // const recipes: any = await this.http.get(`${this.SPOONACULAR_URL}/recipes/findByIngredients`, {params}).toPromise();
+    // console.log(recipes)
     return recipes;
   }
 }

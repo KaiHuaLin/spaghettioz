@@ -6,4 +6,5 @@ export interface Query {
     intolerances?: string,
     equipment?: string,
     includeIngredients?: string,
+    // ingredients?: string,
 }

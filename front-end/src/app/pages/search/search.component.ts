@@ -125,7 +125,8 @@ export class SearchComponent implements OnInit {
     });
 
     const query: Query = {
-      includeIngredients: ingredientList,
+      includeIngredients: ingredientList, 
+      // ingredients: "tomato,cheese,eggplant"
     } 
 
     try {
