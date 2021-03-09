@@ -50,13 +50,13 @@ export class SearchComponent implements OnInit {
     //still need logic to connect recipe to user
     if(document.getElementById(id).style.color == "red"){
       document.getElementById(id).style.color = "black";
-      this.addToFavorite( document.getElementById(id));
+      this.removeFromFavorite( document.getElementById(id).id);
     }
     //favorite recipe
     //also needs logic
     else if(document.getElementById(id).style.color == "black"){
       document.getElementById(id).style.color = "red";
-      this.removeFromFavorite( document.getElementById(id));
+      this.addToFavorite(document.getElementById(id).id);
     }
   }
   
@@ -67,20 +67,22 @@ export class SearchComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
-    list.push(str);
+    if (list.indexOf(str) <= -1){
+      list.push(str);
+    }
     await this.Db.update_user(dbUser.uid, {favorite:list});
  }
 
- private async removeFromFavorite(str){
-  const currentUser = await this.AuthService.getCurrentUser();
-  const dbUser = await this.Db.get_user(currentUser.uid);
-  var list = dbUser.favorite;
-  const index = list.indexOf(str);
-  if (index > 1){
-    list.splice(index,1);
+  private async removeFromFavorite(str){
+    const currentUser = await this.AuthService.getCurrentUser();
+    const dbUser = await this.Db.get_user(currentUser.uid);
+    var list = dbUser.favorite;
+    const index = list.indexOf(str);
+    if (index > 1){
+      list.splice(index,1);
+    }
+    await this.Db.update_user(dbUser.uid, {favorite:list});
   }
-  await this.Db.update_user(dbUser.uid, {favorite:list});
-}
 
   //for the paginator
   public getPaginator(event){

@@ -25,21 +25,19 @@ export class FavoriteComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     // get user in db so that you can get or write favorite field
     const dbUser = await this.Db.get_user(currentUser.uid);
-    // console.log(dbUser.favorite);
-    // const preview1 = await this.RecipePreview.get_recipe_by_id(dbUser.favorite[0])
     dbUser.favorite.forEach(async element =>{
       const temp = await this.RecipePreview.get_recipe_by_id(element);
       this.fList.push(temp);
-      // console.log(temp);   
     });
-    // console.log(this.fList);
   }
 
   private async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
-    list.push(str)
+    if (list.indexOf(str) <= -1){
+      list.push(str);
+    }
     await this.Db.update_user(dbUser.uid, {favorite:list});
  }
 
