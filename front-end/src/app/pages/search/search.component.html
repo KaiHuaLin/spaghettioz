@@ -49,7 +49,10 @@
                     <div class = "holder" *ngFor= "let recipe of viewrecipe | slice: lowValue : highValue">
                         <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                             <mat-card-title>{{recipe.title}}</mat-card-title>
-                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)">
+                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)" *ngIf = "recipe.favorite == true">
+                                <mat-icon id = {{recipe.id}} [ngStyle]="{'color':'red'}">favorite</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)" *ngIf = "recipe.favorite == false">
                                 <mat-icon id = {{recipe.id}} [ngStyle]="{'color':'black'}">favorite</mat-icon>
                             </button>
                             <mat-card-subtitle></mat-card-subtitle>
