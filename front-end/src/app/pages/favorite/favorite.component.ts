@@ -1,3 +1,4 @@
+import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/Recipe';
@@ -13,11 +14,32 @@ import { RecipePreviewService } from '../../service/db/recipe-preview.service';
 export class FavoriteComponent implements OnInit {
   
   fList = [];
+
+    //Variables for paginator
+    pageIndex: number = 0;
+    pageSize: number = 1;
+    lowValue: number = 0;
+    highValue: number = 1;
+
   constructor(private AuthService: AuthService, private Db: DbService, private RecipePreview: RecipePreviewService, private router: Router) {
    }
   
   ngOnInit(): void {
     this.getFavorite();
+    console.log(this.fList);
+  }
+
+  //for the paginator
+  public getPaginator(event){
+    if(event.pageIndex === this.pageIndex + 1){
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue = this.highValue + this.pageSize;
+    }
+    else if(event.pageIndex === this.pageIndex - 1){
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this. highValue - this.pageSize;
+    }
+    this.pageIndex = event.pageIndex;
   }
 
   async getFavorite() {

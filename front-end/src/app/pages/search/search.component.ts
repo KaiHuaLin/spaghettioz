@@ -8,6 +8,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Recipe } from '../../models/Recipe';
 import { DbService } from '../../service/db/db.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { FavoriteComponent } from '../favorite/favorite.component';
 
 @Component({
   selector: 'app-search',
@@ -20,12 +21,15 @@ export class SearchComponent implements OnInit {
   ingredients = [];
   selectedIngredients = [];
   viewrecipe = [];
+  
 
   //Variables for paginator
   pageIndex: number = 0;
   pageSize: number = 2;
   lowValue: number = 0;
   highValue: number = 2;
+
+  fList = [];
 
   dietPreference: string;
   diets = [{name:'Vegetarian', checked: false},{name:'Vegan', checked: false},{name:'Gluten Free', checked: false},{name:'Dairy Free', checked: false},{name:'None', checked: true}];
@@ -39,6 +43,8 @@ export class SearchComponent implements OnInit {
       Validators.required
     );
     this.dietPreference = 'None';
+    this.getFavorite();
+
   }
 
   ngOnInit(): void {
@@ -58,6 +64,17 @@ export class SearchComponent implements OnInit {
       document.getElementById(id).style.color = "red";
       this.addToFavorite(document.getElementById(id).id);
     }
+  }
+
+  async getFavorite() {
+    // get current user
+    const currentUser = await this.AuthService.getCurrentUser();
+    // get user in db so that you can get or write favorite field
+    const dbUser = await this.Db.get_user(currentUser.uid);
+    dbUser.favorite.forEach(async element =>{
+      const temp = await this.recipePreview.get_recipe_by_id(element);
+      this.fList.push(temp);
+    });
   }
   
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
@@ -176,7 +193,17 @@ export class SearchComponent implements OnInit {
   // example
   async getRecipe(id) {
     const recipe = await this.recipePreview.get_recipe_by_id(id);
-    this.viewrecipe.push(recipe);
+    //formats it so that the recipes will be able to display if they are favorited or not
+    this.viewrecipe.push({id: recipe.id, image: recipe.image, title: recipe.title, favorite: false});
+    this.fList.forEach(element =>{
+      //finds the favorite and sets true
+      if(element.id == recipe.id){
+        const index = this.viewrecipe.indexOf(recipe.id);
+            this.viewrecipe.splice(index,1);
+            this.viewrecipe.push({id: recipe.id, image: recipe.image, title: recipe.title, favorite: true});
+          }
+    });
+    console.log(this.viewrecipe);
   }
 
 
