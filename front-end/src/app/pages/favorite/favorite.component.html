@@ -40,7 +40,7 @@
                 <mat-card  fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                     <mat-card-title>{{fav.title}}</mat-card-title>
                     <button mat-icon-button color="warn" aria-label="Favite" (click)="removeFromFavorite(fav.id)">
-                      <mat-icon id = {{fav.id}}>favorite</mat-icon>
+                      <mat-icon id = {{fav.id}} [ngStyle]="{'color':'red'}">favorite</mat-icon>
                   </button>
                     <mat-card-subtitle>{{fav.id}}</mat-card-subtitle>
                     <img src = {{fav.image}} mat-card-image alt = "recipe">
