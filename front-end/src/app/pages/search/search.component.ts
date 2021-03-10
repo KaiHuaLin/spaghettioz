@@ -169,7 +169,7 @@ export class SearchComponent implements OnInit {
   async searchRecipesByQuery(diet, ingredients) {
     console.log(diet);
     console.log(ingredients)
-    if(this.ingredients.length == 0){
+    if(ingredients.length == 0){
       this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
       return;
     }
