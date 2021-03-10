@@ -51,6 +51,10 @@ export class SearchComponent implements OnInit {
     this.setupPantry();
   }
 
+  delete(ingredient, index){
+
+  }
+
   //favorites a specific recipe
   favorite(id: string) {
     //unfavorite 
@@ -118,6 +122,9 @@ export class SearchComponent implements OnInit {
   //get value of checkboc
   getCheckboxes() {
     this.selectedIngredients = this.ingredients.filter(x => x.checked === true).map(x => x.ingredient);
+  }
+  unCheckboxes(){
+    this.selectedIngredients = this.ingredients.filter(x => x.checked === false).map(x => x.ingredient);
   }
 
   //adds ingredient
