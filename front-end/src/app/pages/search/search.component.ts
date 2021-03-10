@@ -158,15 +158,15 @@ export class SearchComponent implements OnInit {
     });
 
     const query: Query = {
-      includeIngredients: ingredientList, 
-      // ingredients: "tomato,cheese,eggplant"
+      // includeIngredients: ingredientList, 
+      ingredients: ingredientList,
     } 
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
-      const results = recipes.results;
-      if (results.length !== 0) {
-        results.forEach(element => {
+      // const results = recipes.results;
+      if (recipes.length !== 0) {
+        recipes.forEach(element => {
           console.log(element.id.toString());
           this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
           this.getRecipe(element.id.toString());
