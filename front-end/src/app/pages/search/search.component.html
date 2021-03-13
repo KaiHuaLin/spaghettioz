@@ -38,7 +38,7 @@
                 </div>
                 <mat-list class="text-center" *ngFor="let ingredient of ingredients; let i = index">
                     <mat-checkbox [(ngModel)]="ingredient.checked" (change)="getCheckboxes()"[color]="blue">  {{ingredient.ingredient}} </mat-checkbox>
-                   <button mat-icon-button (change)="unCheckboxes()" (click)="ingredients.splice(i, 1)"><mat-icon>delete</mat-icon></button> 
+                   <button mat-icon-button (click)="deleteIngredient(index, ingredient, ingredients)"><mat-icon>delete</mat-icon></button> 
                 </mat-list>
             </div>
     

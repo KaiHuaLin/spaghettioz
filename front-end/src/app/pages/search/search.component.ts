@@ -122,8 +122,20 @@ export class SearchComponent implements OnInit {
   getCheckboxes() {
     this.selectedIngredients = this.ingredients.filter(x => x.checked === true).map(x => x.ingredient);
   }
-  unCheckboxes(){
-    this.selectedIngredients = this.ingredients.filter(x => x.checked === false).map(x => x.ingredient);
+  // unCheckboxes(){
+  //   this.selectedIngredients = this.ingredients.filter(x => x.checked === false).map(x => x.ingredient);
+  // }
+
+  deleteIngredient(index, ingredient, ingredients){
+    if(this.selectedIngredients.length > 0){
+      this.selectedIngredients.forEach(element =>{
+        if(element === ingredient.ingredient){
+          this.selectedIngredients.splice(index, 1);
+        }
+      });
+    }
+    
+    ingredients.splice(index, 1);
   }
 
   //adds ingredient
@@ -150,6 +162,7 @@ export class SearchComponent implements OnInit {
   // examples
   async searchRecipesByQuery(diet, ingredients) {
     console.log(diet);
+    console.log(ingredients);
     if(ingredients.length == 0){
       this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
       return;
