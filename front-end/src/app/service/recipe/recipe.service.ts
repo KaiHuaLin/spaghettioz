@@ -25,7 +25,8 @@ export class RecipeService {
       apiKey: this.SPOONACULAR_APIKEY,
     }});
 
-    const recipes: any = await this.http.get(`${this.SPOONACULAR_URL}/recipes/complexSearch`, {params}).toPromise();
+    // const recipes: any = await this.http.get(`${this.SPOONACULAR_URL}/recipes/complexSearch`, {params}).toPromise();
+    const recipes: any = await this.http.get(`${this.SPOONACULAR_URL}/recipes/findByIngredients`, {params}).toPromise();
     return recipes;
   }
 }

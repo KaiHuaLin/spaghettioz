@@ -48,6 +48,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setupPantry();
   }
 
   delete(ingredient, index){
@@ -143,7 +144,31 @@ export class SearchComponent implements OnInit {
     console.log(ingredient);
     this.ingredients.push(ingredient);
     this.ingredientFormGroup.reset();
-    //console.log(this.ingredients);
+    console.log(this.ingredients);
+  }
+
+  // update user pantry
+  async updatePantry() {
+    const authUser = await this.AuthService.getCurrentUser();
+    const uid = authUser.uid;
+    this.Db.update_user(uid, {pantry: this.ingredients});
+  }
+
+  // get pantry
+  async setupPantry() {
+    const authUser = await this.AuthService.getCurrentUser();
+    const uid = authUser.uid;
+    const dbUser = await this.Db.get_user(uid);
+    const pantry = dbUser.pantry;
+    console.log(pantry);
+
+    this.ingredients = pantry;
+    
+    this.ingredients.forEach(ingredient => {
+      if (ingredient.checked === true) {
+        this.selectedIngredients.push(ingredient.ingredient);
+      }
+    })
   }
 
   // examples
@@ -162,7 +187,7 @@ export class SearchComponent implements OnInit {
   // examples
   async searchRecipesByQuery(diet, ingredients) {
     console.log(diet);
-    console.log(ingredients);
+    console.log(ingredients)
     if(ingredients.length == 0){
       this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
       return;
@@ -178,22 +203,25 @@ export class SearchComponent implements OnInit {
     });
 
     const query: Query = {
-      includeIngredients: ingredientList,
+      // includeIngredients: ingredientList, 
+      ingredients: ingredientList,
     } 
 
     try {
       const recipes = await this.recipe.get_recipe_by_query(query);
-      const results = recipes.results;
-      if (results.length !== 0) {
-        results.forEach(element => {
+      // const results = recipes.results;
+      if (recipes.length !== 0) {
+        recipes.forEach(element => {
           console.log(element.id.toString());
           this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
           this.getRecipe(element.id.toString());
+
+          // update pantry once click search
+          this.updatePantry()
         });
       } else {
         console.log("no result");
       }
-
     }
     catch {
       console.log("errorrrrrrrrrrr");

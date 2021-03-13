@@ -22,7 +22,7 @@ export class FavoriteComponent implements OnInit {
     highValue: number = 1;
 
   constructor(private AuthService: AuthService, private Db: DbService, private RecipePreview: RecipePreviewService, private router: Router) {
-   }
+  }
   
   ngOnInit(): void {
     this.getFavorite();
