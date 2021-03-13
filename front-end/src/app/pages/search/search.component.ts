@@ -132,6 +132,7 @@ export class SearchComponent implements OnInit {
       });
     }
     ingredients.splice(index, 1);
+    this.updatePantry()
   }
 
   //adds ingredient
@@ -139,7 +140,9 @@ export class SearchComponent implements OnInit {
     console.log(ingredient);
     this.ingredients.push(ingredient);
     this.ingredientFormGroup.reset();
-    console.log(this.ingredients);
+    
+    // update pantry
+    this.updatePantry()
   }
 
   // update user pantry
@@ -210,9 +213,6 @@ export class SearchComponent implements OnInit {
           console.log(element.id.toString());
           this.createPreviewRecipe(element.id.toString(), element.image.toString(), element.title.toString());
           this.getRecipe(element.id.toString());
-
-          // update pantry once click search
-          this.updatePantry()
         });
       } else {
         console.log("no result");
