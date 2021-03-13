@@ -44,15 +44,11 @@ export class SearchComponent implements OnInit {
     );
     this.dietPreference = 'None';
     this.getFavorite();
-
-  }
-
-  ngOnInit(): void {
     this.setupPantry();
   }
 
-  delete(ingredient, index){
-
+  ngOnInit(): void {
+    //
   }
 
   //favorites a specific recipe
@@ -135,7 +131,6 @@ export class SearchComponent implements OnInit {
         }
       });
     }
-    
     ingredients.splice(index, 1);
   }
 
@@ -154,7 +149,7 @@ export class SearchComponent implements OnInit {
     this.Db.update_user(uid, {pantry: this.ingredients});
   }
 
-  // get pantry
+  //get pantry
   async setupPantry() {
     const authUser = await this.AuthService.getCurrentUser();
     const uid = authUser.uid;
@@ -187,7 +182,7 @@ export class SearchComponent implements OnInit {
   // examples
   async searchRecipesByQuery(diet, ingredients) {
     console.log(diet);
-    console.log(ingredients)
+    console.log(ingredients);
     if(ingredients.length == 0){
       this.snackBar.open("Please select an ingredient to search", null, { duration: 4000});
       return;
