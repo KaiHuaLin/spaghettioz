@@ -249,6 +249,12 @@ export class SearchComponent implements OnInit {
     console.log(this.viewrecipe);
   }
 
+  // viewing the detail of the recipe in a new page
+  async viewRecipe(recipeId: string) {
+    const recipe = await this.recipe.get_recipe_by_id(recipeId);
+    console.log(recipe);
+  }
+
 
     // async user(){
     //   //1)access user
