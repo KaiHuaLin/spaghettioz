@@ -124,6 +124,7 @@ export class SearchComponent implements OnInit {
   // }
 
   deleteIngredient(index, ingredient, ingredients){
+    ingredients.splice(index, 1);
     if(this.selectedIngredients.length > 0){
       this.selectedIngredients.forEach(element =>{
         if(element === ingredient.ingredient){
@@ -131,7 +132,6 @@ export class SearchComponent implements OnInit {
         }
       });
     }
-    ingredients.splice(index, 1);
     this.updatePantry()
   }
 
