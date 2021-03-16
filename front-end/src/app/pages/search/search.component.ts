@@ -132,7 +132,8 @@ export class SearchComponent implements OnInit {
         }
       });
     }
-    this.updatePantry()
+    this.updatePantry();
+    this.snackBar.open("Ingredient deleted", null, { duration: 4000});
   }
 
   //adds ingredient

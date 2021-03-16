@@ -1,5 +1,6 @@
 import { flatten } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/Recipe';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -21,7 +22,7 @@ export class FavoriteComponent implements OnInit {
     lowValue: number = 0;
     highValue: number = 1;
 
-  constructor(private AuthService: AuthService, private Db: DbService, private RecipePreview: RecipePreviewService, private router: Router) {
+  constructor(private AuthService: AuthService,private snackBar: MatSnackBar, private Db: DbService, private RecipePreview: RecipePreviewService, private router: Router) {
   }
   
   ngOnInit(): void {
@@ -63,15 +64,16 @@ export class FavoriteComponent implements OnInit {
     await this.Db.update_user(dbUser.uid, {favorite:list});
  }
 
- private async removeFromFavorite(str){
+ async removeFromFavorite(str){
   const currentUser = await this.AuthService.getCurrentUser();
   const dbUser = await this.Db.get_user(currentUser.uid);
   var list = dbUser.favorite;
   const index = list.indexOf(str);
-  if (index > 1){
-    list.splice(index,1);
-  }
-  await this.Db.update_user(dbUser.uid, {favorite:list});
+  list.splice(index,1);
+  this.fList.splice(index,1);
+
+  this.Db.update_user(currentUser.uid, {favorite:list});
+  this.snackBar.open("Successfully unfavorited the recipe.", null, { duration: 4000});
 }
 
 }
