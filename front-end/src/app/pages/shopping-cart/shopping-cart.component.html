@@ -35,14 +35,12 @@
                 </div>
                 <mat-list class="text-left list" *ngFor="let listItem of listItems; let i = index">
                      <span>{{listItem.listItem}} </span>
-                   <button class = "del" mat-icon-button (click)="listItems.splice(i, 1)"><mat-icon>delete</mat-icon></button> 
+                   <button class = "del" mat-icon-button (click)="deleteFromList(i)"><mat-icon>delete</mat-icon></button> 
                 </mat-list>
             </div>
           </div>
-          
         </div>
         </div>
-        
     </section>
 </main>
     <div class="container">
@@ -53,4 +51,5 @@
             </div>
         </div>
     </div>
+
  

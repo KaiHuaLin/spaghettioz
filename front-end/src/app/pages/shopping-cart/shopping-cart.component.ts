@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,14 +12,13 @@ export class ShoppingCartComponent implements OnInit {
   shoppingCartFormGroup: FormGroup;
   listItems = [];
 
-  constructor() { 
+  constructor(private snackBar: MatSnackBar) { 
     this.shoppingCartFormGroup = new FormGroup(
       {
         listItem: new FormControl(""),
       },
       Validators.required
     );
-    
   }
 
   ngOnInit(): void {
@@ -30,6 +30,11 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartFormGroup.reset();
     console.log(listItem);
     console.log(this.listItems);
+  }
+
+  deleteFromList(index){
+    this.listItems.splice(index, 1);
+    this.snackBar.open("Ingredients sucessfully deleted.", null, { duration: 4000});
   }
 
 }

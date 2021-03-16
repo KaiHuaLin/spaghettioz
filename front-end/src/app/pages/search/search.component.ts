@@ -87,8 +87,10 @@ export class SearchComponent implements OnInit {
     var list = dbUser.favorite;
     if (list.indexOf(str) <= -1){
       list.push(str);
+      this.fList.push(str);
     }
-    await this.Db.update_user(dbUser.uid, {favorite:list});
+    await this.Db.update_user(currentUser.uid, {favorite:list});
+    this.snackBar.open("Favorited recipe", null, { duration: 4000});
  }
 
   private async removeFromFavorite(str){
@@ -96,10 +98,10 @@ export class SearchComponent implements OnInit {
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
     const index = list.indexOf(str);
-    if (index > 1){
-      list.splice(index,1);
-    }
-    await this.Db.update_user(dbUser.uid, {favorite:list});
+    list.splice(index,1);
+    this.fList.push(str);
+    await this.Db.update_user(currentUser.uid, {favorite:list});
+    this.snackBar.open("Unfavorited recipe", null, { duration: 4000});
   }
 
   //for the paginator
@@ -132,7 +134,8 @@ export class SearchComponent implements OnInit {
         }
       });
     }
-    this.updatePantry()
+    this.updatePantry();
+    this.snackBar.open("Ingredient deleted", null, { duration: 4000});
   }
 
   //adds ingredient
