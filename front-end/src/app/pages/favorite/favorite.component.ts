@@ -61,7 +61,7 @@ export class FavoriteComponent implements OnInit {
     if (list.indexOf(str) <= -1){
       list.push(str);
     }
-    await this.Db.update_user(dbUser.uid, {favorite:list});
+    await this.Db.update_user(currentUser.uid, {favorite:list});
  }
 
  async removeFromFavorite(str){
