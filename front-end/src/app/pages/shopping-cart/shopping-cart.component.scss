@@ -16,6 +16,7 @@
 .plus{
     width:20%;
     float: left;
+    margin-right:0;
 }
 
 .list{
@@ -30,17 +31,18 @@ body{
 }
 
 .holder{
-    height:80rem;
+    height:50rem;
 }
 
-.btn-default{
-    margin-right:2rem;
-}
 .mat-icon-button{
     margin-left:85%;
     position:absolute;
 }
 .strike{
     text-decoration: line-through;
+}
+.print{
+    border:none;
+    background:none;
 }
 

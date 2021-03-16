@@ -37,4 +37,8 @@ export class ShoppingCartComponent implements OnInit {
     this.snackBar.open("Ingredients sucessfully deleted.", null, { duration: 4000});
   }
 
+  print(){
+    window.print();
+  }
+
 }
