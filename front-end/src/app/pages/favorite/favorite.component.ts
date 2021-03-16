@@ -54,7 +54,7 @@ export class FavoriteComponent implements OnInit {
     });
   }
 
-  private async addToFavorite(str){
+  async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
