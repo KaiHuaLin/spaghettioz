@@ -59,13 +59,22 @@ export class SearchComponent implements OnInit {
     if(document.getElementById(id).style.color == "red"){
       document.getElementById(id).style.color = "black";
       this.removeFromFavorite( document.getElementById(id).id);
-     // console.log("view" + this.viewecipe);
+     this.viewrecipe.forEach(element=>{
+       if(element.id == id){
+         element.favorite = false;
+       }
+     });
     }
     //favorite recipe
     //also needs logic
     else if(document.getElementById(id).style.color == "black"){
       document.getElementById(id).style.color = "red";
       this.addToFavorite(document.getElementById(id).id);
+      this.viewrecipe.forEach(element=>{
+        if(element.id == id){
+          element.favorite = true;
+        }
+      });
     }
   }
 

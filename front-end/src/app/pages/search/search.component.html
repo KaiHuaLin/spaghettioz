@@ -44,6 +44,9 @@
                 <div class="col-lg-8" >
                     <h2>Results</h2><br>
                     <mat-paginator [length]="viewrecipe.length" [pageSize]="pageSize" (page)="getPaginator($event)"></mat-paginator>
+                    <div *ngIf="viewrecipe.length == 0">
+                        <h4>Press search to find recipes</h4>
+                    </div>
                     <div class = "holder" *ngFor= "let recipe of viewrecipe | slice: lowValue : highValue">
                         <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                             <mat-card-title>{{recipe.title}}</mat-card-title>
