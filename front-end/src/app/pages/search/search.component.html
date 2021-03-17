@@ -59,7 +59,7 @@
                             <mat-card-subtitle></mat-card-subtitle>
                             <img src = {{recipe.image}} mat-card-image alt = "recipe">
                             <mat-card-content> id: {{recipe.id}}</mat-card-content>
-                            <button type="button" class="btn btn-default my-4" (click)= "viewRecipe(recipe.id)">Learn More</button>
+                            <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe', recipe.id]">Learn More</button>
                         </mat-card>
                     </div>            
             </div>

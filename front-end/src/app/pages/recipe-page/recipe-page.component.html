@@ -1,1 +1,36 @@
-<p>display recipe here.</p>
+<main>
+    <div class = "container">
+        <div *ngIf="viewrecipe" >
+            <h1 class="text-left">{{viewrecipe.title}}</h1>
+            <div class="row" >
+                <img src= {{viewrecipe.image}} alt = "recipe image">
+                <mat-list class = "list">
+                    <mat-list-item> Ready in: {{viewrecipe.readyInMinutes}} minutes </mat-list-item>
+                    <mat-list-item> Serving size: {{viewrecipe.servings}} serving </mat-list-item> 
+                    <!-- <mat-list-item> Source: <a href = {{viewrecipe.sourceUrl}} >{{viewrecipe.sourceUrl}} </a></mat-list-item>  -->
+                    <mat-list-item> Diets: {{viewrecipe.diets}} </mat-list-item>
+                </mat-list> 
+            </div>
+            <h2>Ingredients:</h2>
+            <mat-list>
+                <div *ngFor= "let search of viewrecipe.analyzedInstructions">
+                    <div *ngFor = "let ingredient of search.steps; let i = index">
+                        <div *ngFor = "let name of ingredient.ingredients">
+                            <mat-list-item *ngIf ="ingredient.id != 0 && i == 0"> 
+                                {{name.name}}
+                            </mat-list-item>
+                        </div>
+                    </div>
+                </div>
+            </mat-list>
+            <p>{{viewrecipe.instructions}}</p>
+    <!-- footer -->
+    </div> 
+    <hr>
+        <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+            <a>Spaghettio Group 2021</a>
+        </div>
+        </div> 
+    </div>
+</main>
