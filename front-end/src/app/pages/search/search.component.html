@@ -44,18 +44,22 @@
                 <div class="col-lg-8" >
                     <h2>Results</h2><br>
                     <mat-paginator [length]="viewrecipe.length" [pageSize]="pageSize" (page)="getPaginator($event)"></mat-paginator>
+                    <div *ngIf="viewrecipe.length == 0">
+                        <h4>Press search to find recipes</h4>
+                    </div>
                     <div class = "holder" *ngFor= "let recipe of viewrecipe | slice: lowValue : highValue">
                         <mat-card fxFlex="75%" fxFlex.xs="100%" fxFlex.sm="75%">
                             <mat-card-title>{{recipe.title}}</mat-card-title>
-                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)" *ngIf = "recipe.favorite == true">
+                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id, recipe)" *ngIf = "recipe.favorite == true">
                                 <mat-icon id = {{recipe.id}} [ngStyle]="{'color':'red'}">favorite</mat-icon>
                             </button>
-                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id)" *ngIf = "recipe.favorite == false">
+                            <button mat-icon-button color="warn" aria-label="Favite" (click)="favorite(recipe.id, recipe)" *ngIf = "recipe.favorite == false">
                                 <mat-icon id = {{recipe.id}} [ngStyle]="{'color':'black'}">favorite</mat-icon>
                             </button>
                             <mat-card-subtitle></mat-card-subtitle>
                             <img src = {{recipe.image}} mat-card-image alt = "recipe">
                             <mat-card-content> id: {{recipe.id}}</mat-card-content>
+                            <button type="button" class="btn btn-default my-4" (click)= "viewRecipe(recipe.id)">Learn More</button>
                         </mat-card>
                     </div>            
             </div>

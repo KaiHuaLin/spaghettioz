@@ -29,11 +29,14 @@
                     <input fxFlex  class="form-control input" formControlName="listItem">
                     <button type = "submit" class = "btn-default plus" [disabled]="shoppingCartFormGroup.invalid">+</button>
                 </form>
+                <button class = "print">
+                  <mat-icon [ngStyle]="{'color':'black'}" (click) = "print()">print</mat-icon>
+              </button>
             </div>
                 <div *ngIf = "listItems.length===0">
                     <h5 class = "text-center">Please add an item to your list</h5>
                 </div>
-                <mat-list class="text-left list" *ngFor="let listItem of listItems; let i = index">
+                <mat-list id = "list" class="text-left list" *ngFor="let listItem of listItems; let i = index">
                      <span>{{listItem.listItem}} </span>
                    <button class = "del" mat-icon-button (click)="deleteFromList(i)"><mat-icon>delete</mat-icon></button> 
                 </mat-list>

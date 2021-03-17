@@ -9,6 +9,7 @@ import { Recipe } from '../../models/Recipe';
 import { DbService } from '../../service/db/db.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { FavoriteComponent } from '../favorite/favorite.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -48,22 +49,32 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //
+    
   }
 
   //favorites a specific recipe
-  favorite(id: string) {
+  favorite(id: string, viewrecipe) {
     //unfavorite 
     //still need logic to connect recipe to user
     if(document.getElementById(id).style.color == "red"){
       document.getElementById(id).style.color = "black";
       this.removeFromFavorite( document.getElementById(id).id);
+     this.viewrecipe.forEach(element=>{
+       if(element.id == id){
+         element.favorite = false;
+       }
+     });
     }
     //favorite recipe
     //also needs logic
     else if(document.getElementById(id).style.color == "black"){
       document.getElementById(id).style.color = "red";
       this.addToFavorite(document.getElementById(id).id);
+      this.viewrecipe.forEach(element=>{
+        if(element.id == id){
+          element.favorite = true;
+        }
+      });
     }
   }
 
@@ -85,11 +96,9 @@ export class SearchComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     var list = dbUser.favorite;
-    if (list.indexOf(str) <= -1){
-      list.push(str);
-      this.fList.push(str);
-    }
-    await this.Db.update_user(currentUser.uid, {favorite:list});
+    list.push(str);
+
+    this.Db.update_user(currentUser.uid, {favorite:list});
     this.snackBar.open("Favorited recipe", null, { duration: 4000});
  }
 
@@ -99,8 +108,8 @@ export class SearchComponent implements OnInit {
     var list = dbUser.favorite;
     const index = list.indexOf(str);
     list.splice(index,1);
-    this.fList.push(str);
-    await this.Db.update_user(currentUser.uid, {favorite:list});
+
+    this.Db.update_user(currentUser.uid, {favorite:list});
     this.snackBar.open("Unfavorited recipe", null, { duration: 4000});
   }
 
@@ -255,6 +264,7 @@ export class SearchComponent implements OnInit {
   // viewing the detail of the recipe in a new page
   async viewRecipe(recipeId: string) {
     const recipe = await this.recipe.get_recipe_by_id(recipeId);
+    window.location.href =recipe.sourceUrl;
     console.log(recipe);
   }
 
