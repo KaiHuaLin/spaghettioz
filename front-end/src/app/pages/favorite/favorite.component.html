@@ -45,7 +45,7 @@
                     <mat-card-subtitle>{{fav.id}}</mat-card-subtitle>
                     <img src = {{fav.image}} mat-card-image alt = "recipe">
                     <!-- <mat-card-content>Description of recipe</mat-card-content> -->
-                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe']">Learn More</button>
+                    <button type="button" class="btn btn-default my-4" [routerLink]="['/recipe', recipe.id]">Learn More</button>
                 </mat-card>
               </div>
             </div>
