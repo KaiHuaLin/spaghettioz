@@ -1,1 +1,9 @@
-<p>display recipe here.</p>
+
+<div *ngIf="viewrecipe"><p>{{viewrecipe.title}}</p>
+<p>Ready in: {{viewrecipe.readyInMinutes}}</p>
+<p>Serving size: {{viewrecipe.servings}}</p>
+<p>Source: {{viewrecipe.sourceUrl}}</p>
+{{viewrecipe.summary}}
+<img src= {{viewrecipe.image}} alt = "recipe image">
+<p>Instructions: {{viewrecipe.instructions}}</p>
+</div>
