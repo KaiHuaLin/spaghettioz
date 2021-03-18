@@ -1,8 +1,10 @@
 .list{
-    font-size: 2rem ! important;
     color: #5E6472;
     margin-top:10%;
+    margin-bottom:2rem;
 }
-mat-list-item{
+.mat-list-base .mat-list-item{
     color: #5E6472;
+    font-size: 1.4rem ! important;
+    margin-bottom:2rem;
 }

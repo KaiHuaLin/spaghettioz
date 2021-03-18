@@ -8,22 +8,26 @@
                     <mat-list-item> Ready in: {{viewrecipe.readyInMinutes}} minutes </mat-list-item>
                     <mat-list-item> Serving size: {{viewrecipe.servings}} serving </mat-list-item> 
                     <!-- <mat-list-item> Source: <a href = {{viewrecipe.sourceUrl}} >{{viewrecipe.sourceUrl}} </a></mat-list-item>  -->
-                    <mat-list-item> Diets: {{viewrecipe.diets}} </mat-list-item>
+                    <!-- <mat-list-item *ngIf= "viewrecipe.diets != []"> Diets: {{viewrecipe.diets}} </mat-list-item> -->
                 </mat-list> 
             </div>
-            <h2>Ingredients:</h2>
+            <!-- <h2>Ingredients:</h2>
             <mat-list>
-                <div *ngFor= "let search of viewrecipe.analyzedInstructions">
-                    <div *ngFor = "let ingredient of search.steps; let i = index">
-                        <div *ngFor = "let name of ingredient.ingredients">
-                            <mat-list-item *ngIf ="ingredient.id != 0 && i == 0"> 
-                                {{name.name}}
-                            </mat-list-item>
+                <div *ngIf="viewrecipe.analyzedInstructions.length > 0">
+                    <div *ngFor= "let search of viewrecipe.analyzedInstructions">
+                        <div *ngFor = "let ingredient of search.steps; let i = index">
+                            <div *ngFor = "let name of ingredient.ingredients">
+                                <mat-list-item *ngIf ="ingredient.id != 0 "> 
+                                    {{name.name}}
+                                </mat-list-item>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </mat-list>
-            <p>{{viewrecipe.instructions}}</p>
+            </mat-list> -->
+            <h2>Instructions:</h2>
+            <p *ngIf="viewrecipe.instructions.length > 0">{{viewrecipe.instructions}}</p>
+            <pre *ngIf="viewrecipe.instructions == ''">{{viewrecipe.summary}}</pre>
     <!-- footer -->
     </div> 
     <hr>
