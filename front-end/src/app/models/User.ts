@@ -5,4 +5,5 @@ export interface User {
     displayName?: string,
     favorite?: [string],
     pantry?: [string],
+    shoppingCart?:[string],
 }
