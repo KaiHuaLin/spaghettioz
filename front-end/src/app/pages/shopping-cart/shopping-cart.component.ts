@@ -32,7 +32,6 @@ export class ShoppingCartComponent implements OnInit {
     this.listItems.push(listItem);
     
     const currentUser = await this.AuthService.getCurrentUser();
-    const dbUser = await this.Db.get_user(currentUser.uid);
   
     await this.Db.update_user(currentUser.uid, {shoppingCart:this.listItems});
     this.shoppingCartFormGroup.reset();
@@ -54,7 +53,7 @@ export class ShoppingCartComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     if(dbUser.shoppingCart){
-      dbUser.shoppingCart.forEach(async element =>{
+      dbUser.shoppingCart.forEach(element =>{
         this.listItems.push(element);
       });
     }
