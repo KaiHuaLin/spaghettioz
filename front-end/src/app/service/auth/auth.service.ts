@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
 import {DbService} from '../../service/db/db.service';
@@ -36,7 +36,7 @@ export class AuthService {
   getCurrentUser(): Promise<firebase.User> {
     return new Promise((resolve, reject) => {
       this.auth.onAuthStateChanged(user => {
-        console.log(user.email + " logged in");
+        // console.log(user.email + " logged in");
         resolve(user);
       }, reject)
     });
