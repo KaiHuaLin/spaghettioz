@@ -15,7 +15,7 @@ export class RecipePageComponent implements OnInit, OnDestroy {
   viewrecipe;
   id: number;
   private sub: any;
-  ingredientList;
+  ingredientList = [];
 
   constructor(private recipe: RecipeService, private route: ActivatedRoute, private AuthService: AuthService, private Db: DbService) { 
     
