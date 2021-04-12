@@ -31,8 +31,8 @@
                 </div>
             </mat-list>
             <h2>Instructions:</h2>
-            <p *ngIf="viewrecipe.instructions.length > 0">{{viewrecipe.instructions}}</p>
-            <pre *ngIf="viewrecipe.instructions == ''"><a href = {{viewrecipe.sourceUrl}}>Source Recipe</a></pre>
+            <p *ngIf="viewrecipe.instructions != null">{{viewrecipe.instructions}}</p>
+            <pre *ngIf="viewrecipe.instructions == '' || viewrecipe.instructions == null"><a href = {{viewrecipe.sourceUrl}}>Source Recipe</a></pre>
     <!-- footer -->
     </div> 
     <hr>

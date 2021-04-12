@@ -15,7 +15,7 @@ export class RecipePageComponent implements OnInit, OnDestroy {
   viewrecipe;
   id: number;
   private sub: any;
-  ingredientList;
+  ingredientList = [];
 
   constructor(private recipe: RecipeService, private route: ActivatedRoute, private AuthService: AuthService, private Db: DbService) { 
     
@@ -59,6 +59,9 @@ export class RecipePageComponent implements OnInit, OnDestroy {
   async getShoppingCart() {
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
-    this.ingredientList = dbUser.shoppingCart
+    if(dbUser.shoppingCart){
+      this.ingredientList = dbUser.shoppingCart
+    }
+    
     }
 }

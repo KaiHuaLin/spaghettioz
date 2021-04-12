@@ -83,10 +83,13 @@ export class SearchComponent implements OnInit {
     const currentUser = await this.AuthService.getCurrentUser();
     // get user in db so that you can get or write favorite field
     const dbUser = await this.Db.get_user(currentUser.uid);
-    dbUser.favorite.forEach(async element =>{
-      const temp = await this.recipePreview.get_recipe_by_id(element);
-      this.fList.push(temp);
-    });
+    if(dbUser.favorite){
+      dbUser.favorite.forEach(async element =>{
+        const temp = await this.recipePreview.get_recipe_by_id(element);
+        this.fList.push(temp);
+      });
+    }
+    
   }
   
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
@@ -95,11 +98,19 @@ export class SearchComponent implements OnInit {
   private async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
-    var list = dbUser.favorite;
-    list.push(str);
-
-    this.Db.update_user(currentUser.uid, {favorite:list});
-    this.snackBar.open("Favorited recipe", null, { duration: 4000});
+    if(dbUser.favorite){
+      var list = dbUser.favorite;
+      list.push(str);
+      this.Db.update_user(currentUser.uid, {favorite:list});
+      this.snackBar.open("Favorited recipe", null, { duration: 4000});
+    }
+    //takes in account an empty favorite list
+    else{
+      var tempList = [];
+      tempList.push(str);
+      this.Db.update_user(currentUser.uid, {favorite:tempList});
+      this.snackBar.open("Favorited recipe", null, { duration: 4000});
+    }  
  }
 
   private async removeFromFavorite(str){
@@ -150,6 +161,7 @@ export class SearchComponent implements OnInit {
   //adds ingredient
   addIngredient(ingredient){
     console.log(ingredient);
+    console.log(this.ingredients);
     this.ingredients.push(ingredient);
     this.ingredientFormGroup.reset();
     
@@ -170,15 +182,22 @@ export class SearchComponent implements OnInit {
     const uid = authUser.uid;
     const dbUser = await this.Db.get_user(uid);
     const pantry = dbUser.pantry;
-    console.log(pantry);
 
-    this.ingredients = pantry;
+    if(dbUser.pantry){
+      console.log(pantry);
+
+      this.ingredients = pantry;
+    }
     
-    this.ingredients.forEach(ingredient => {
-      if (ingredient.checked === true) {
-        this.selectedIngredients.push(ingredient.ingredient);
-      }
-    })
+    
+    if(this.ingredients){
+      this.ingredients.forEach(ingredient => {
+        if (ingredient.checked === true) {
+          this.selectedIngredients.push(ingredient.ingredient);
+        }
+      });
+    }
+    
   }
 
   // examples
