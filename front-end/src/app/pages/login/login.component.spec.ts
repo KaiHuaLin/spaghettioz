@@ -6,6 +6,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -27,9 +28,20 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+   
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('form invalid when empty', () => {
+    expect(component.loginFormGroup.valid).toBeTruthy();
+  });
+  it('email field validity', () => {
+    let email = component.loginFormGroup.controls['email']; 
+    expect(email.valid).toBeTruthy(); 
+  });
 });
+
+
+  
