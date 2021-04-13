@@ -104,4 +104,24 @@ describe('SearchComponent', () => {
     expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '' }));
     expect(component.ingredients[1]).toEqual(Object({ ingredient: 'ham', checked: null }));
   });
+
+  //checking valid search
+  //valid delete from list of ingredients
+  it('valid search with ingredient list', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("eggs");
+    component.addIngredient(component.ingredientFormGroup.value);
+    
+    component.ingredientFormGroup.controls['ingredient'].setValue("ham");
+    component.addIngredient(component.ingredientFormGroup.value);
+    component.ingredients[1].checked = true;
+
+    component.ingredientFormGroup.controls['ingredient'].setValue("cheese");
+    component.addIngredient(component.ingredientFormGroup.value);
+    component.ingredients[2].checked = true;
+    component.getCheckboxes();
+
+    let result = component.searchRecipesByQuery(component.dietPreference, component.selectedIngredients);
+    console.log(result);
+    expect(result).toBeTruthy();
+  });
 });
