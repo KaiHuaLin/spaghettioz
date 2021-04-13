@@ -64,4 +64,16 @@ describe('SearchComponent', () => {
     expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: true }) ] );
   });
 
+  //valid radio button
+  it('radio button (diet) validity', () => {
+    //should be done to begin with 
+    expect(component.dietPreference).toEqual("None");
+    //simulating button click
+    //since it changes when chnage is detected
+    component.dietPreference = "Vegan";
+    expect(component.dietPreference).toEqual("Vegan");
+
+    component.dietPreference = "None";
+    expect(component.dietPreference).toEqual("None");
+  });
 });
