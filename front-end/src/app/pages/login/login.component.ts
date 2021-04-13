@@ -32,32 +32,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //logs in with google
   async googleSignin() {
     var provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.auth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
   }
 
+  //adds user to the database
   private updateUserData(user) {
-    // Sets user data to firestore on login
-    //const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     console.log(user);
-    // const data = {
-    //   uid: user.uid,
-    //   email: user.email,
-    //   displayName: user.displayName,
-    //   password:"password",
-    // };
-
     this.Db.create_user(user.uid, user.email, "user.password");
 
     this.AuthService.update_user(user, { displayName: user.displayName });
-
     localStorage.setItem('user', JSON.stringify(user));
     this.router.navigate(['search']);
-
-    
-
   }
   
 
