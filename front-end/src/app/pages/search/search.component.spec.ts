@@ -6,6 +6,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from "@angular/material/snack-bar/";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { SearchComponent } from './search.component';
 
@@ -20,7 +21,9 @@ describe('SearchComponent', () => {
         AngularFireAuthModule,
         RouterTestingModule,
         MatSnackBarModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       declarations: [ SearchComponent ]
     })
@@ -36,4 +39,9 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('ingredient field validity', () => {
+    let ingredient = component.ingredientFormGroup.controls['ingredient']; 
+    expect(ingredient.valid).toBeTruthy(); 
+  });
+
 });
