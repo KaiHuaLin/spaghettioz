@@ -44,6 +44,6 @@ describe('ShoppingCartComponent', () => {
 
     component.addToList(component.shoppingCartFormGroup.value);
 
-    expect(component.listItems).toEqual("ham");
+    expect(component.listItems).toEqual([ Object({ listItem: 'ham' }) ]);
   });
 });
