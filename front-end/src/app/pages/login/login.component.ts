@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from 'src/app/models/User';
+import { DbService } from 'src/app/service/db/db.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
   user: any;
 
-  constructor(private AuthService: AuthService, public router: Router) { 
+  constructor(private AuthService: AuthService, public router: Router, private auth: AngularFireAuth,private afs: AngularFirestore, private Db: DbService) { 
     this.loginFormGroup = new FormGroup(
       {
         email: new FormControl(""),
@@ -24,6 +30,34 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  async googleSignin() {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    const credential = await this.auth.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
+  }
+
+  private updateUserData(user) {
+    // Sets user data to firestore on login
+    //const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    console.log(user);
+    // const data = {
+    //   uid: user.uid,
+    //   email: user.email,
+    //   displayName: user.displayName,
+    //   password:"password",
+    // };
+
+    this.Db.create_user(user.uid, user.email, "user.password");
+
+    this.AuthService.update_user(user, { displayName: user.displayName });
+
+    localStorage.setItem('user', JSON.stringify(user));
+    this.router.navigate(['search']);
+
+    
+
   }
   
 

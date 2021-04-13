@@ -44,6 +44,7 @@ import { RecipeService } from './service/recipe/recipe.service';
 import { RecipePreviewService } from './service/db/recipe-preview.service';
 import { AuthGuard } from './guards/auth.guard';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     AngularFirestoreModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    AngularFireAuthModule,
     FlexLayoutModule,
     MatCardModule,
     MatTabsModule,
