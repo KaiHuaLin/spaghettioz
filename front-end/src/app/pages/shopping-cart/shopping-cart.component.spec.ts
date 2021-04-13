@@ -32,4 +32,18 @@ describe('ShoppingCartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('list field validity', () => {
+    let ingredient = component.shoppingCartFormGroup.get("listItem").value;
+    expect(ingredient.valid).toBeFalsy(); 
+  });
+
+  //add an ingredient to sjopping list
+  it('list content field validity', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
+
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    expect(component.listItems).toEqual("ham");
+  });
 });

@@ -29,7 +29,7 @@
                 </mat-radio-group>
                 <div class = "row">
                     <form fxFlex [formGroup]="ingredientFormGroup" (ngSubmit)="addIngredient(ingredientFormGroup.value)">
-                        <input fxFlex class="form-control input" formControlName="ingredient">
+                        <input fxFlex class="form-control input" required  formControlName="ingredient">
                         <button class = "btn-default plus">+</button>
                     </form>
                 </div>

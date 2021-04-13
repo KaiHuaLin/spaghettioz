@@ -8,6 +8,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar/";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
@@ -21,9 +22,7 @@ describe('SearchComponent', () => {
         AngularFireAuthModule,
         RouterTestingModule,
         MatSnackBarModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule
+        HttpClientModule
       ],
       declarations: [ SearchComponent ]
     })
@@ -40,8 +39,18 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
   it('ingredient field validity', () => {
-    let ingredient = component.ingredientFormGroup.controls['ingredient']; 
-    expect(ingredient.valid).toBeTruthy(); 
+    let ingredient = component.ingredientFormGroup.get("ingredient").value;
+    expect(ingredient.valid).toBeFalsy(); 
+  });
+
+  //add an ingredient
+  it('ingredient field validity', () => {
+
+    component.ingredientFormGroup.controls['ingredient'].setValue("ham");
+
+    component.addIngredient(component.ingredientFormGroup.value);
+
+    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: '' }) ] );
   });
 
 });
