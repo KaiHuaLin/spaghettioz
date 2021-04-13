@@ -71,13 +71,6 @@ describe('ShoppingCartComponent', () => {
     component.deleteFromList(0);
 
     expect(component.listItems).toEqual([  ]);
-
-    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
-
-    component.addToList(component.shoppingCartFormGroup.value);
-    component.shoppingCartFormGroup.controls['listItem'].setValue("cheese");
-
-    component.addToList(component.shoppingCartFormGroup.value);
   });
 
   //valid delete list item

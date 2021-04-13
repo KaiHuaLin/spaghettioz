@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 import { SearchComponent } from './search.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -22,7 +23,8 @@ describe('SearchComponent', () => {
         AngularFireAuthModule,
         RouterTestingModule,
         MatSnackBarModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule
       ],
       declarations: [ SearchComponent ]
     })
@@ -75,5 +77,31 @@ describe('SearchComponent', () => {
 
     component.dietPreference = "None";
     expect(component.dietPreference).toEqual("None");
+  });
+
+  //valid delete list item
+  it('list ingredient delete validity', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("ham");
+
+    component.addIngredient(component.ingredientFormGroup.value);
+    component.deleteIngredient(0, component.ingredientFormGroup.value, component.ingredients)
+
+    expect(component.ingredients).toEqual([  ]);
+  });
+
+  //valid delete from list of ingredients
+  it('list content delete from list of multiple validity', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("eggs");
+    component.addIngredient(component.ingredientFormGroup.value);
+    
+    component.ingredientFormGroup.controls['ingredient'].setValue("ham");
+    component.addIngredient(component.ingredientFormGroup.value);
+
+    component.ingredientFormGroup.controls['ingredient'].setValue("cheese");
+    component.addIngredient(component.ingredientFormGroup.value);
+
+    component.deleteIngredient(2, component.ingredientFormGroup.value, component.ingredients)
+    expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '' }));
+    expect(component.ingredients[1]).toEqual(Object({ ingredient: 'ham', checked: null }));
   });
 });
