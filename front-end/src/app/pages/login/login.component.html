@@ -45,7 +45,8 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-default my-4" [disabled]="loginFormGroup.invalid">Sign in</button>
+                                <button style = "width:61%;"type="submit" class="btn btn-default my-4" [disabled]="loginFormGroup.invalid">Sign in</button>
+                                <button (click)="googleSignin()"type="sumit" style = "border:none;"><img alt = "google" src = "(../../assets/img/btn_google_signin_light_normal_web.png"></button>
                             </div>
                         </form>
                     </div>

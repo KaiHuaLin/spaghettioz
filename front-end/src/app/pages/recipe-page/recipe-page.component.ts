@@ -62,6 +62,5 @@ export class RecipePageComponent implements OnInit, OnDestroy {
     if(dbUser.shoppingCart){
       this.ingredientList = dbUser.shoppingCart
     }
-    
     }
 }
