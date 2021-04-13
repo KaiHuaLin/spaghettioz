@@ -45,12 +45,23 @@ describe('SearchComponent', () => {
 
   //add an ingredient
   it('ingredient field validity', () => {
-
     component.ingredientFormGroup.controls['ingredient'].setValue("ham");
 
     component.addIngredient(component.ingredientFormGroup.value);
 
     expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: '' }) ] );
+  });
+
+  //valid checked ingredient
+  it('checkbox field validity', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("ham");
+    
+
+    component.addIngredient(component.ingredientFormGroup.value);
+    component.ingredients[0].checked = true;
+    component.getCheckboxes();
+
+    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: true }) ] );
   });
 
 });
