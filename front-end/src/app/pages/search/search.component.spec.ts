@@ -11,10 +11,13 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { SearchComponent } from './search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from '../login/login.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
+  let component2: LoginComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let fixture2: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,7 +29,7 @@ describe('SearchComponent', () => {
         HttpClientModule,
         BrowserAnimationsModule
       ],
-      declarations: [ SearchComponent ]
+      declarations: [ SearchComponent, LoginComponent ]
     })
     .compileComponents();
   });
@@ -35,6 +38,12 @@ describe('SearchComponent', () => {
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  beforeEach(() => {
+    fixture2 = TestBed.createComponent(LoginComponent);
+    component2 = fixture2.componentInstance;
+    fixture2.detectChanges();
   });
 
   it('should create', () => {
@@ -124,4 +133,5 @@ describe('SearchComponent', () => {
     console.log(result);
     expect(result).toBeTruthy();
   });
+
 });

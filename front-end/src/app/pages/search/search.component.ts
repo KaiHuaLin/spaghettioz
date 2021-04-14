@@ -96,7 +96,7 @@ export class SearchComponent implements OnInit {
   //<<to be implemented>> add Flist by importing Favorite.component and have fList as a global variable
   //<<to be implemented>> update fList in favorite function and call updateFavorite
   // update favorite updates user favorite array <<paramitor string array>>
-  private async addToFavorite(str){
+  async addToFavorite(str){
     const currentUser = await this.AuthService.getCurrentUser();
     const dbUser = await this.Db.get_user(currentUser.uid);
     if(dbUser.favorite){

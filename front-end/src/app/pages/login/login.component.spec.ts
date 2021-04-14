@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from 'src/app/models/User';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -19,6 +20,7 @@ describe('LoginComponent', () => {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         RouterTestingModule,
+        BrowserAnimationsModule,
         ReactiveFormsModule, FormsModule
         
       ],
