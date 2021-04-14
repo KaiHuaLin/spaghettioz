@@ -32,4 +32,61 @@ describe('ShoppingCartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('list field validity', () => {
+    let ingredient = component.shoppingCartFormGroup.get("listItem").value;
+    expect(ingredient.valid).toBeFalsy(); 
+  });
+
+  //add an ingredient to sjopping list
+  it('list content field validity', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
+
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    expect(component.listItems).toEqual([ Object({ listItem: 'ham' }) ]);
+  });
+
+  //add multiple ingredients to sjopping list
+  it('multiple list content field validity', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    component.shoppingCartFormGroup.controls['listItem'].setValue("cheese");
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    component.shoppingCartFormGroup.controls['listItem'].setValue("eggs");
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'ham' }) );
+    expect(component.listItems[1]).toEqual(Object({ listItem: 'cheese' }) );
+    expect(component.listItems[2]).toEqual(Object({ listItem: 'eggs' }) );
+  });
+
+  //valid delete list item
+  it('list content delete validity', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
+
+    component.addToList(component.shoppingCartFormGroup.value);
+    component.deleteFromList(0);
+
+    expect(component.listItems).toEqual([  ]);
+  });
+
+  //valid delete list item
+  it('list content delete from list of multiple validity', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("eggs");
+    component.addToList(component.shoppingCartFormGroup.value);
+    
+    component.shoppingCartFormGroup.controls['listItem'].setValue("ham");
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    component.shoppingCartFormGroup.controls['listItem'].setValue("cheese");
+    component.addToList(component.shoppingCartFormGroup.value);
+
+    component.deleteFromList(2);
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'eggs' }));
+    expect(component.listItems[1]).toEqual(Object({ listItem: 'ham' }));
+  });
+
 });

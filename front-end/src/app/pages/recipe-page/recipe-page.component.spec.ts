@@ -34,4 +34,7 @@ describe('RecipePageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //add tests here
+
 });

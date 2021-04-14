@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,9 +19,12 @@ describe('LoginComponent', () => {
       imports: [
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule, FormsModule
+        
       ],
-      declarations: [ LoginComponent ]
+      declarations: [ LoginComponent]
     })
     .compileComponents();
   });
@@ -34,12 +39,35 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //checks fields are valid
   it('form invalid when empty', () => {
-    expect(component.loginFormGroup.valid).toBeTruthy();
+    expect(component.loginFormGroup.valid).toBeFalsy();
   });
   it('email field validity', () => {
     let email = component.loginFormGroup.controls['email']; 
-    expect(email.valid).toBeTruthy(); 
+    expect(email.valid).toBeFalsy(); 
+  });
+  it('password field validity', () => {
+    let password = component.loginFormGroup.controls['password']; 
+    expect(password.valid).toBeTruthy(); 
+  });
+
+  //checks for correct login
+  it('valid user login', async () => {
+    expect(component.loginFormGroup.valid).toBeFalsy();
+    component.loginFormGroup.controls['email'].setValue("lauren@test.com");
+    component.loginFormGroup.controls['password'].setValue("passpass");
+    expect(component.loginFormGroup.valid).toBeTruthy();
+
+    
+    // Trigger the login function
+    component.login();
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    // Now we can check to make sure the emitted value is correct
+    expect(user.email).toBe("lauren@test.com");
+    expect(user.displayName).toBe("lauren");
   });
 });
 
