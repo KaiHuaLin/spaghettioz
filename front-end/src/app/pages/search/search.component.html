@@ -34,7 +34,7 @@
                     </form>
                 </div>
                 <div>
-                    <button class = "btn btn-default " [disabled]="ingredientFormGroup.invalid" (click) = "searchRecipesByQuery(dietPreference, selectedIngredients) ">Search</button>
+                    <button class = "btn btn-default " (click) = "searchRecipesByQuery(dietPreference, selectedIngredients) ">Search</button>
                 </div>
                     <mat-list class="text-center" *ngFor="let ingredient of ingredients; let i = index">
                         <mat-checkbox [(ngModel)]="ingredient.checked" (change)="getCheckboxes()"[color]="blue">  {{ingredient.ingredient}} </mat-checkbox>
