@@ -37,7 +37,7 @@
                     <h5 class = "text-center">Please add an item to your list</h5>
                 </div>
                 <mat-list id = "list" class="text-left list" *ngFor="let listItem of listItems; let i = index">
-                     <span>{{listItem.listItem}} </span>
+                     <span><input [(ngModel)]="listItem.amount" (change)="getAmount(listItem)" class = "number" type="number" step="1" value = "1">{{listItem.listItem}} </span>
                    <button class = "del" mat-icon-button (click)="deleteFromList(i)"><mat-icon>delete</mat-icon></button> 
                 </mat-list>
             </div>

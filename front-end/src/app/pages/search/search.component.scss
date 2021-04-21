@@ -54,6 +54,7 @@ mat-card{
 .mat-list-base{
     margin-left:1.5rem;
     text-align: left ! important;
+    font-size: 1rem;
 }
 
 .example-radio-button {
@@ -69,5 +70,12 @@ mat-checkbox{
 }
 .card{
     height: 80rem;
+}
+
+.number{
+    width:20%;
+    border:none;
+    color: #5E6472;
+    height:10%;
 }
 
