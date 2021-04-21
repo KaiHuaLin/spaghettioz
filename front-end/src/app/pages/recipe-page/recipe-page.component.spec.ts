@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RecipePageComponent } from './recipe-page.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('RecipePageComponent', () => {
   let component: RecipePageComponent;
@@ -18,7 +19,8 @@ describe('RecipePageComponent', () => {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         RouterTestingModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSnackBarModule
       ],
       declarations: [ RecipePageComponent ]
     })
