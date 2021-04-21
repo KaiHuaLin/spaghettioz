@@ -36,8 +36,9 @@
                 <div>
                     <button class = "btn btn-default " (click) = "searchRecipesByQuery(dietPreference, selectedIngredients) ">Search</button>
                 </div>
+                
                     <mat-list class="text-center" *ngFor="let ingredient of ingredients; let i = index">
-                        <mat-checkbox [(ngModel)]="ingredient.checked" (change)="getCheckboxes()"[color]="blue">  {{ingredient.ingredient}} </mat-checkbox>
+                        <mat-checkbox [(ngModel)]="ingredient.checked" (change)="getCheckboxes()"[color]="blue">  <input [(ngModel)]="ingredient.amount" (change)="getAmount(ingredient)" class = "number" type="number" step="1" value = "1">{{ingredient.ingredient}} </mat-checkbox>
                     <button mat-icon-button (click)="deleteIngredient(i, ingredient, ingredients)"><mat-icon>delete</mat-icon></button> 
                     </mat-list>
                 </div>

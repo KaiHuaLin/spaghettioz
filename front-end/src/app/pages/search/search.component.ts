@@ -40,7 +40,8 @@ export class SearchComponent implements OnInit {
     this.ingredientFormGroup = new FormGroup(
       {
         ingredient: new FormControl(""),
-        checked:new FormControl("")
+        checked:new FormControl(""),
+        amount:new FormControl(1)
       },
       Validators.required
     );
@@ -141,6 +142,11 @@ export class SearchComponent implements OnInit {
   //get value of checkboc
   getCheckboxes() {
     this.selectedIngredients = this.ingredients.filter(x => x.checked === true).map(x => x.ingredient);
+  }
+
+  getAmount(i) {
+    console.log(i);
+    this.updatePantry();
   }
   // unCheckboxes(){
   //   this.selectedIngredients = this.ingredients.filter(x => x.checked === false).map(x => x.ingredient);

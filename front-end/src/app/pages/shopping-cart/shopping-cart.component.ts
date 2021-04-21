@@ -18,6 +18,7 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartFormGroup = new FormGroup(
       {
         listItem: new FormControl(""),
+        amount: new FormControl(1)
       },
       Validators.required
     );
@@ -47,6 +48,16 @@ export class ShoppingCartComponent implements OnInit {
 
   print(){
     window.print();
+  }
+
+  getAmount(){
+    this.updateList();
+  }
+
+  async updateList() {
+    const authUser = await this.AuthService.getCurrentUser();
+    const uid = authUser.uid;
+    this.Db.update_user(uid, {shoppingCart:this.listItems});
   }
 
   async getShoppingCart() {
