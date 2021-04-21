@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DbService } from 'src/app/service/db/db.service';
 import { RecipeService } from 'src/app/service/recipe/recipe.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recipe-page',
@@ -17,7 +18,7 @@ export class RecipePageComponent implements OnInit, OnDestroy {
   private sub: any;
   ingredientList = [];
 
-  constructor(private recipe: RecipeService, private route: ActivatedRoute, private AuthService: AuthService, private Db: DbService) { 
+  constructor(private recipe: RecipeService, private snackBar: MatSnackBar,private route: ActivatedRoute, private AuthService: AuthService, private Db: DbService) { 
     
   }
 
@@ -54,6 +55,7 @@ export class RecipePageComponent implements OnInit, OnDestroy {
     const currentUser = await this.AuthService.getCurrentUser();
   
     await this.Db.update_user(currentUser.uid, {shoppingCart:this.ingredientList});
+    this.snackBar.open("Successfully added ingredients to list", null, { duration: 4000});
   }
 
   async getShoppingCart() {
