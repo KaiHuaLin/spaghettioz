@@ -130,4 +130,13 @@ describe('SearchComponent', () => {
     expect(result).toBeTruthy();
   });
 
+  //test amount increment
+  it('list should respond to amount change', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("eggs");
+    component.ingredientFormGroup.controls['amount'].setValue(3);
+    component.addIngredient(component.ingredientFormGroup.value);
+    
+    expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '', amount: 3 }));
+  });
+
 });

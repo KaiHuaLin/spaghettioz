@@ -89,4 +89,13 @@ describe('ShoppingCartComponent', () => {
     expect(component.listItems[1]).toEqual(Object({ listItem: 'ham', amount: 1 }));
   });
 
+  //test amount increment
+  it('list content change with amount increment', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("eggs");
+    component.shoppingCartFormGroup.controls['amount'].setValue(3);
+    component.addToList(component.shoppingCartFormGroup.value);
+    
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'eggs', amount: 3 }));
+  });
+
 });
