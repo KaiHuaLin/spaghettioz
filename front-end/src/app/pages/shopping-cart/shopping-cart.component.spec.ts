@@ -44,7 +44,7 @@ describe('ShoppingCartComponent', () => {
 
     component.addToList(component.shoppingCartFormGroup.value);
 
-    expect(component.listItems).toEqual([ Object({ listItem: 'ham' }) ]);
+    expect(component.listItems).toEqual([ Object({ listItem: 'ham', amount: 1  }) ]);
   });
 
   //add multiple ingredients to sjopping list
@@ -58,9 +58,9 @@ describe('ShoppingCartComponent', () => {
     component.shoppingCartFormGroup.controls['listItem'].setValue("eggs");
     component.addToList(component.shoppingCartFormGroup.value);
 
-    expect(component.listItems[0]).toEqual(Object({ listItem: 'ham' }) );
-    expect(component.listItems[1]).toEqual(Object({ listItem: 'cheese' }) );
-    expect(component.listItems[2]).toEqual(Object({ listItem: 'eggs' }) );
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'ham', amount: 1 }) );
+    expect(component.listItems[1]).toEqual(Object({ listItem: 'cheese', amount: 1  }) );
+    expect(component.listItems[2]).toEqual(Object({ listItem: 'eggs', amount: 1  }) );
   });
 
   //valid delete list item
@@ -85,8 +85,17 @@ describe('ShoppingCartComponent', () => {
     component.addToList(component.shoppingCartFormGroup.value);
 
     component.deleteFromList(2);
-    expect(component.listItems[0]).toEqual(Object({ listItem: 'eggs' }));
-    expect(component.listItems[1]).toEqual(Object({ listItem: 'ham' }));
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'eggs', amount: 1 }));
+    expect(component.listItems[1]).toEqual(Object({ listItem: 'ham', amount: 1 }));
+  });
+
+  //test amount increment
+  it('list content change with amount increment', () => {
+    component.shoppingCartFormGroup.controls['listItem'].setValue("eggs");
+    component.shoppingCartFormGroup.controls['amount'].setValue(3);
+    component.addToList(component.shoppingCartFormGroup.value);
+    
+    expect(component.listItems[0]).toEqual(Object({ listItem: 'eggs', amount: 3 }));
   });
 
 });

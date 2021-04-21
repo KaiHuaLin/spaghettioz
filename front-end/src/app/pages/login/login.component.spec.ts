@@ -55,7 +55,7 @@ describe('LoginComponent', () => {
 
   //checks for correct login
   it('valid user login', async () => {
-    expect(component.loginFormGroup.valid).toBeFalsy();
+
     component.loginFormGroup.controls['email'].setValue("lauren@test.com");
     component.loginFormGroup.controls['password'].setValue("passpass");
     expect(component.loginFormGroup.valid).toBeTruthy();

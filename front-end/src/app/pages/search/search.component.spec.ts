@@ -25,9 +25,9 @@ describe('SearchComponent', () => {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         RouterTestingModule,
-        MatSnackBarModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatSnackBarModule
       ],
       declarations: [ SearchComponent, LoginComponent ]
     })
@@ -49,10 +49,6 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('ingredient field validity', () => {
-    let ingredient = component.ingredientFormGroup.get("ingredient").value;
-    expect(ingredient.valid).toBeFalsy(); 
-  });
 
   //add an ingredient
   it('ingredient field validity', () => {
@@ -60,7 +56,7 @@ describe('SearchComponent', () => {
 
     component.addIngredient(component.ingredientFormGroup.value);
 
-    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: '' }) ] );
+    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: '', amount: 1 }) ] );
   });
 
   //valid checked ingredient
@@ -72,7 +68,7 @@ describe('SearchComponent', () => {
     component.ingredients[0].checked = true;
     component.getCheckboxes();
 
-    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: true }) ] );
+    expect(component.ingredients).toEqual([ Object({ ingredient: 'ham', checked: true, amount: 1 }) ] );
   });
 
   //valid radio button
@@ -110,8 +106,8 @@ describe('SearchComponent', () => {
     component.addIngredient(component.ingredientFormGroup.value);
 
     component.deleteIngredient(2, component.ingredientFormGroup.value, component.ingredients)
-    expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '' }));
-    expect(component.ingredients[1]).toEqual(Object({ ingredient: 'ham', checked: null }));
+    expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '', amount: 1 }));
+    expect(component.ingredients[1]).toEqual(Object({ ingredient: 'ham', checked: null, amount: null }));
   });
 
   //checking valid search
@@ -132,6 +128,15 @@ describe('SearchComponent', () => {
     let result = component.searchRecipesByQuery(component.dietPreference, component.selectedIngredients);
     console.log(result);
     expect(result).toBeTruthy();
+  });
+
+  //test amount increment
+  it('list should respond to amount change', () => {
+    component.ingredientFormGroup.controls['ingredient'].setValue("eggs");
+    component.ingredientFormGroup.controls['amount'].setValue(3);
+    component.addIngredient(component.ingredientFormGroup.value);
+    
+    expect(component.ingredients[0]).toEqual(Object({ ingredient: 'eggs', checked: '', amount: 3 }));
   });
 
 });
