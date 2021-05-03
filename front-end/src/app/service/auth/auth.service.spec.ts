@@ -22,4 +22,12 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('signin success', () => {
+    expect(service.signIn("erictest@test.com", "12345678")).toBeTruthy();
+  });
+
+  it('signout success', () => {
+    expect(service.signIn("erictest@test.com", "12345678")).toBeTruthy();
+  });
 });
